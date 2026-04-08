@@ -1,0 +1,712 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* ─── NEW THEME ─── */
+  --color-bg: #f8fafc;
+  --color-surface: #ffffff;
+  --color-surface-2: #f1f5f9;
+  --color-surface-3: #e2e8f0;
+  --color-border: rgba(0, 0, 0, 0.08);
+  --color-border-hover: rgba(0, 0, 0, 0.15);
+  --color-text: #0f172a;
+  --color-text-muted: #475569;
+  --color-text-dim: #94a3b8;
+
+  /* Indigo brand */
+  --color-primary: #4f46e5;
+  --color-primary-dark: #3730a3;
+  --color-primary-light: #e0e7ff;
+  --color-primary-glow: rgba(79, 70, 229, 0.15);
+
+  /* Accent + semantic */
+  --color-accent: #f59e0b;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-success: #10b981;
+  --color-navy: #0f172a;
+
+  /* Fonts */
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 28px;
+  --radius-full: 9999px;
+
+  /* Shadows (light theme) */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 6px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.04);
+  --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.12);
+
+  --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ─── MAPBOX ─── */
+.mapboxgl-ctrl-logo {
+  display: none !important;
+}
+
+.mapboxgl-ctrl-attrib {
+  display: none !important;
+}
+
+.mapboxgl-popup-content {
+  background: var(--color-surface) !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-lg) !important;
+  color: var(--color-text) !important;
+  padding: 0 !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+.mapboxgl-popup-tip {
+  display: none !important;
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: -200% 0;
+  }
+
+  to {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes scanLine {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(100vh);
+  }
+}
+
+/* Car animations on highway */
+@keyframes carLeft {
+  from {
+    transform: translateX(110vw);
+  }
+
+  to {
+    transform: translateX(-20vw);
+  }
+}
+
+@keyframes carRight {
+  from {
+    transform: translateX(-20vw);
+  }
+
+  to {
+    transform: translateX(110vw);
+  }
+}
+
+@keyframes truckLeft {
+  from {
+    transform: translateX(120vw);
+  }
+
+  to {
+    transform: translateX(-25vw);
+  }
+}
+
+/* Parallax clouds */
+@keyframes cloudDrift {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.35s ease forwards;
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+/* ─── SKELETON ─── */
+.skeleton {
+  background: linear-gradient(90deg, #f1f4f8 25%, #e8ecf1 50%, #f1f4f8 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-sm);
+}
+
+/* ─── GLASS CARD ─── */
+.glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* ─── CARD ─── */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ─── BUTTONS ─── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 18px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: var(--transition);
+  text-decoration: none;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 1px 3px rgba(79, 70, 229, 0.3);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--color-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+}
+
+.btn-ghost:hover:not(:disabled) {
+  border-color: var(--color-border-hover);
+  background: var(--color-surface-2);
+  color: var(--color-text);
+}
+
+.btn-navy {
+  background: var(--color-navy);
+  color: #fff;
+}
+
+.btn-navy:hover:not(:disabled) {
+  background: #1e293b;
+  transform: translateY(-1px);
+}
+
+.btn-danger {
+  background: var(--color-danger);
+  color: #fff;
+}
+
+/* ─── INPUTS ─── */
+.input {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 14px;
+  transition: var(--transition);
+  outline: none;
+  box-shadow: var(--shadow-xs);
+}
+
+.input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-glow);
+}
+
+.input::placeholder {
+  color: var(--color-text-dim);
+}
+
+/* ─── TAGS / BADGES ─── */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.tag-green {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.tag-amber {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.tag-red {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.tag-indigo {
+  background: var(--color-primary-light);
+  color: var(--color-primary-dark);
+}
+
+.tag-blue {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.tag-default {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+/* ─── STOCK BAR ─── */
+.stock-bar {
+  height: 4px;
+  border-radius: 2px;
+  background: #e2e8f0;
+  overflow: hidden;
+}
+
+.stock-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.6s ease;
+}
+
+/* ─── HERO HIGHWAY ANIMATION ─── */
+.highway-scene {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Road lanes */
+.road-layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 180px;
+  background: linear-gradient(180deg, transparent 0%, rgba(15, 23, 42, 0.04) 100%);
+}
+
+/* Parallax cloud layer */
+.cloud-strip {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 200%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  gap: 120px;
+  animation: cloudDrift 40s linear infinite;
+}
+
+/* Individual car */
+.car {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  will-change: transform;
+}
+
+.car-left {
+  animation: carLeft var(--dur, 8s) linear var(--delay, 0s) infinite;
+}
+
+.car-right {
+  animation: carRight var(--dur, 10s) linear var(--delay, 0s) infinite;
+}
+
+.truck-left {
+  animation: truckLeft var(--dur, 14s) linear var(--delay, 0s) infinite;
+}
+
+/* Taillight glow */
+.car-glow {
+  position: absolute;
+  right: -6px;
+  width: 8px;
+  height: 4px;
+  border-radius: 50%;
+  background: #ef4444;
+  filter: blur(3px);
+  opacity: 0.8;
+}
+
+.car-headlight {
+  position: absolute;
+  left: -8px;
+  width: 10px;
+  height: 4px;
+  border-radius: 50%;
+  background: #fef9c3;
+  filter: blur(3px);
+  opacity: 0.9;
+}
+
+/* Grid background texture */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(79, 70, 229, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79, 70, 229, 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Checker grid for hero (matches screenshot top section) */
+.checker-bg {
+  background-image:
+    linear-gradient(45deg, rgba(79, 70, 229, 0.04) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(79, 70, 229, 0.04) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(79, 70, 229, 0.04) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(79, 70, 229, 0.04) 75%);
+  background-size: 64px 64px;
+  background-position: 0 0, 0 32px, 32px -32px, -32px 0px;
+}
+
+/* ─── NAV ACTIVE INDICATOR ─── */
+.nav-active {
+  color: var(--color-primary) !important;
+  position: relative;
+}
+
+.nav-active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-primary);
+  border-radius: 1px;
+}
+
+/* ─── PAGE WRAPPER ─── */
+.page-wrapper {
+  min-height: 100vh;
+  background: var(--color-bg);
+  padding-top: 60px;
+}
+
+/* ─── PREMIUM GLASSMORPHISM ─── */
+.glass-premium {
+  background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.5);
+  box-shadow: 0 8px 32px rgba(79,70,229,0.1);
+}
+
+.glass-dark {
+  background: linear-gradient(135deg, rgba(15,23,42,0.9), rgba(15,23,42,0.7));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.glass-card {
+  background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.6);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(79,70,229,0.15);
+}
+
+/* ─── MICRO-INTERACTIONS ─── */
+.hover-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(79,70,229,0.15);
+}
+
+.hover-scale {
+  transition: transform 0.2s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.02);
+}
+
+.hover-glow {
+  transition: box-shadow 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(79,70,229,0.3);
+}
+
+/* ─── GRADIENT TEXT ─── */
+.gradient-text {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-primary {
+  background: linear-gradient(135deg, #4f46e5, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-glow {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 30px rgba(79,70,229,0.3);
+}
+
+/* ─── ANIMATED BORDERS ─── */
+.border-gradient {
+  position: relative;
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+}
+
+.border-gradient::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: calc(var(--radius-xl) + 2px);
+  background: linear-gradient(135deg, #4f46e5, #7c3aed, #ec4899, #4f46e5);
+  background-size: 300% 300%;
+  animation: gradientBorder 3s ease infinite;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.border-gradient:hover::before {
+  opacity: 1;
+}
+
+@keyframes gradientBorder {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ─── PULSE RING ANIMATION ─── */
+.pulse-ring {
+  position: relative;
+}
+
+.pulse-ring::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  animation: pulseRing 2s ease-out infinite;
+}
+
+@keyframes pulseRing {
+  0% { transform: scale(1); opacity: 0.5; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* ─── SKELETON LOADING ─── */
+.skeleton-shimmer {
+  background: linear-gradient(90deg, #f1f4f8 25%, #e8ecf1 50%, #f1f4f8 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-pulse {
+  background: linear-gradient(90deg, #f1f4f8 0%, #e8ecf1 50%, #f1f4f8 100%);
+  background-size: 200% 100%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* ─── BUTTON HOVER EFFECTS ─── */
+.btn-premium {
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 10px 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(79,70,229,0.35);
+}
+
+.btn-premium:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(79,70,229,0.45);
+}
+
+.btn-premium:active {
+  transform: translateY(0);
+}
+
+.btn-ghost-premium {
+  background: rgba(255,255,255,0.9);
+  color: #0f172a;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: var(--radius-md);
+  padding: 10px 20px;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+}
+
+.btn-ghost-premium:hover {
+  background: rgba(255,255,255,1);
+  border-color: rgba(79,70,229,0.3);
+  box-shadow: 0 4px 14px rgba(79,70,229,0.15);
+}
