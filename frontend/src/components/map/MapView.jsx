@@ -12,6 +12,23 @@ const BRAND_COLORS = {
 };
 
 export default function MapView({ onStationSelect, height = '100%' }) {
+  const mapReady = !!import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
+
+  if (!mapReady) {
+    return (
+      <div style={{
+        width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center',
+        background: '#1a1d23', color: '#fff', padding: 20, textAlign: 'center', flexDirection: 'column'
+      }}>
+        <div style={{ fontSize: 40, marginBottom: 16 }}>⚠️</div>
+        <h3 style={{ marginBottom: 8 }}>Mapbox Token Missing</h3>
+        <p style={{ color: '#94a3b8', fontSize: 13, maxWidth: 300 }}>
+          Please add <b>VITE_MAPBOX_ACCESS_TOKEN</b> to your Vercel Environment Variables to display the map.
+        </p>
+      </div>
+    );
+  }
+
   const mapContainer = useRef(null);
   const map = useRef(null);
   const markersRef = useRef({});
