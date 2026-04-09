@@ -1,12 +1,15 @@
 {
   "name": "petrolpulze-monorepo",
   "version": "1.0.0",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
   "scripts": {
-    "build": "npm run install-backend && npm run build-frontend",
-    "install-backend": "cd backend && npm install",
-    "build-frontend": "cd frontend && npm install && npm run build -- --outDir ../public"
+    "build": "npm run build --workspace=frontend -- --outDir ../public"
   },
   "dependencies": {
-    "vite": "^5.0.0"
+    "vite": "^5.0.0",
+    "@vitejs/plugin-react": "^4.2.0"
   }
 }
