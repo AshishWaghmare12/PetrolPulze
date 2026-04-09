@@ -1,5 +1,8 @@
 # PetroPluze - Mumbai's Smartest Fuel Finder
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FAshishWaghmare12%2FPetrolPulze&root-directory=frontend)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/AshishWaghmare12/PetrolPulze)
+
 A polished, hackathon-ready full-stack web application designed to help users discover, filter, and plan routes to petrol pumps across Mumbai.
 
 ## Features
