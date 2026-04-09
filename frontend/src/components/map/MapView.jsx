@@ -12,9 +12,9 @@ const BRAND_COLORS = {
 };
 
 export default function MapView({ onStationSelect, height = '100%' }) {
-  const mapReady = !!import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
+  const isTokenValid = !!import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
 
-  if (!mapReady) {
+  if (!isTokenValid) {
     return (
       <div style={{
         width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center',
