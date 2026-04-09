@@ -111,7 +111,7 @@ export default function StationCard({ station, onRouteClick }) {
         <button
           className="btn btn-primary"
           onClick={handleRoute}
-          disabled={routing || !station.isOpen}
+          disabled={routing || !isOpen}
           style={{ flex: 1, fontSize: 12, padding: '7px 0', justifyContent: 'center' }}
         >
           {routing ? '…' : '🗺️ Route'}

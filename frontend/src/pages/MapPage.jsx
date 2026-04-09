@@ -28,27 +28,43 @@ export default function MapPage() {
     compareList,
   } = useMapStore();
 
+  const [isShowingRecommended, setIsShowingRecommended] = useState(false);
+  const [featuredStations, setFeaturedStations] = useState([]);
+
   const fetchNearby = useCallback(async () => {
-    if (!userLocation) return;
     setLoading(true);
     try {
-      const res = await stationsApi.nearby({
-        lat: userLocation.lat, lng: userLocation.lng,
-        radiusKm: filters.maxDistance || 10,
-        ...(filters.fuelType && { fuelType: filters.fuelType }),
-        ...(filters.openNow && { openNow: true }),
-        ...(filters.brand && { brand: filters.brand }),
-      });
-      if (res.success) setStations(res.data || []);
+      let res;
+      if (userLocation) {
+        res = await stationsApi.nearby({
+          lat: userLocation.lat, lng: userLocation.lng,
+          radiusKm: filters.maxDistance || 10,
+          ...(filters.fuelType && { fuelType: filters.fuelType }),
+          ...(filters.openNow && { openNow: true }),
+          ...(filters.brand && { brand: filters.brand }),
+        });
+      }
+
+      if (res && res.success && res.data?.length > 0) {
+        setStations(res.data);
+        setIsShowingRecommended(false);
+      } else {
+        // Fallback: Get top-rated stations as "Recommended"
+        const featuredRes = await stationsApi.search({ sort: 'rating', limit: 8 });
+        if (featuredRes.success) {
+          setStations(featuredRes.data || []);
+          setIsShowingRecommended(true);
+        }
+      }
     } catch (err) { console.error(err); }
     finally { setLoading(false); }
   }, [userLocation, filters]);
 
   useEffect(() => { fetchNearby(); }, [fetchNearby]);
-  
-  useEffect(() => { 
+
+  useEffect(() => {
     if (!userLocation) {
-      locateUser(); 
+      locateUser();
     } else if (mapRef && !activeRoute && !selectedStation) {
       mapRef.flyTo({ center: [userLocation.lng, userLocation.lat], zoom: 14 });
     }
@@ -58,7 +74,7 @@ export default function MapPage() {
   useEffect(() => {
     const sid = searchParams.get('stationId');
     const autoRoute = searchParams.get('route') === 'true';
-    
+
     if (sid && stations.length > 0) {
       const s = stations.find(x => x.id === sid);
       if (s) {
@@ -79,23 +95,23 @@ export default function MapPage() {
         const res = await mapApi.autocomplete(q, userLocation?.lat, userLocation?.lng);
         setAutocompleteResults(res.data || []);
         setShowAutocomplete(true);
-      } catch {}
+      } catch { }
     }, 280);
   };
 
   const handleLocateNearest = async () => {
     // 1. Just locate the user to get current coordinates
     await locateUser();
-    
+
     // We need to wait for userLocation to be set, but satisfy it immediately if possible
     let loc = userLocation;
     if (!loc) {
-        // Fallback for immediate click
-        setTimeout(async () => {
-            const freshLoc = useMapStore.getState().userLocation;
-            if (freshLoc) findNearest(freshLoc);
-        }, 1000);
-        return;
+      // Fallback for immediate click
+      setTimeout(async () => {
+        const freshLoc = useMapStore.getState().userLocation;
+        if (freshLoc) findNearest(freshLoc);
+      }, 1000);
+      return;
     }
     findNearest(loc);
   };
@@ -123,14 +139,39 @@ export default function MapPage() {
   };
 
   const handleStationRoute = async (station) => {
-    if (!userLocation) { locateUser(); return; }
+    if (!userLocation) {
+      await locateUser();
+      // Use setInterval/Timeout to check if location was found, then proceed
+      const checkLoc = setInterval(() => {
+        const freshLoc = useMapStore.getState().userLocation;
+        if (freshLoc) {
+          clearInterval(checkLoc);
+          handleStationRoute(station); // Retry with location
+        }
+      }, 500);
+      setTimeout(() => clearInterval(checkLoc), 5000); // Timeout after 5s
+      return;
+    }
+
     try {
       const res = await mapApi.route({
-        sourceLat: userLocation.lat, sourceLng: userLocation.lng,
-        destLat: station.latitude, destLng: station.longitude,
+        sourceLat: userLocation.lat,
+        sourceLng: userLocation.lng,
+        destLat: station.latitude,
+        destLng: station.longitude,
       });
-      if (res.success) { setActiveRoute(res.data); setSelectedStation(station); }
-    } catch (err) { console.error('Route error:', err); }
+      if (res.success) {
+        setActiveRoute(res.data);
+        setSelectedStation(station);
+        // Scroll navigation panel into view if needed
+        document.querySelector('.sidebar-content')?.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        alert('Route mapping unavailable for this location.');
+      }
+    } catch (err) {
+      console.error('Route error:', err);
+      alert('Could not calculate route. Please check your connection.');
+    }
   };
 
   const handleReachabilityRings = async () => {
@@ -139,7 +180,7 @@ export default function MapPage() {
     try {
       const res = await mapApi.isochrone({ lat: userLocation.lat, lng: userLocation.lng, minutes: '5,10,15' });
       if (res.success) setIsochrones(res.data);
-    } catch {}
+    } catch { }
   };
 
   return (
@@ -151,6 +192,7 @@ export default function MapPage() {
         background: 'var(--color-surface)',
         borderRight: '1px solid var(--color-border)',
         display: 'flex', flexDirection: 'column', overflow: 'hidden',
+        zIndex: 20,
       }}>
         {/* Header */}
         <div style={{ padding: '16px 16px 12px', borderBottom: '1px solid var(--color-border)' }}>
@@ -185,10 +227,10 @@ export default function MapPage() {
               }}>
                 {autocompleteResults.slice(0, 5).map((r) => (
                   <div key={r.id}
-                    onMouseDown={() => { 
-                      setSearchQ(r.name); 
-                      setSelectedStation(r); 
-                      setShowAutocomplete(false); 
+                    onMouseDown={() => {
+                      setSearchQ(r.name);
+                      setSelectedStation(r);
+                      setShowAutocomplete(false);
                       if (mapRef) mapRef.flyTo({ center: [r.longitude, r.latitude], zoom: 15 });
                     }}
                     style={{ padding: '9px 12px', cursor: 'pointer', fontSize: 13, borderBottom: '1px solid var(--color-border)' }}
@@ -233,7 +275,7 @@ export default function MapPage() {
             </select>
             <select className="input" value={filters.maxDistance} onChange={e => setFilters({ maxDistance: +e.target.value })}
               style={{ flex: '0 0 70px', fontSize: 11, padding: '6px 8px' }}>
-              {[2,5,10,15,20,50].map(r => <option key={r} value={r}>{r}km</option>)}
+              {[2, 5, 10, 15, 20, 50].map(r => <option key={r} value={r}>{r}km</option>)}
             </select>
           </div>
         </div>
@@ -274,14 +316,14 @@ export default function MapPage() {
         <MapView onStationSelect={(s) => setSelectedStation(s)} height="100%" />
 
         {/* Recenter FAB */}
-        <button 
+        <button
           onClick={handleLocateNearest}
           className="btn-premium"
-          style={{ 
-            position: 'absolute', bottom: 32, right: 32, z1: 10, 
-            width: 54, height: 54, borderRadius: '50%', background: '#0f172a', 
+          style={{
+            position: 'absolute', bottom: 32, right: 32, zIndex: 30,
+            width: 54, height: 54, borderRadius: '50%', background: '#0f172a',
             boxShadow: 'var(--shadow-lg)', border: 'none',
-            cursor: 'pointer', fontSize: 24, display: 'flex', alignItems: 'center', justifyContent: 'center' 
+            cursor: 'pointer', fontSize: 24, display: 'flex', alignItems: 'center', justifyContent: 'center'
           }}
           title="Locate Nearest Pump"
         >
@@ -296,6 +338,7 @@ export default function MapPage() {
             borderRadius: 'var(--radius-xl)', padding: '16px 20px',
             minWidth: 320, maxWidth: 420,
             boxShadow: 'var(--shadow-lg)', animation: 'fadeIn 0.25s ease',
+            zIndex: 40,
           }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12 }}>
               <div>
@@ -336,6 +379,7 @@ export default function MapPage() {
           background: 'rgba(255,255,255,0.95)', border: '1px solid var(--color-border)',
           borderRadius: 'var(--radius-md)', padding: '12px 14px', fontSize: 12,
           backdropFilter: 'blur(12px)',
+          zIndex: 30,
         }}>
           <div style={{ fontWeight: 700, marginBottom: 8, fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.07em', color: 'var(--color-text-dim)' }}>Legend</div>
           {[['#22c55e', 'Available'], ['#f59e0b', 'Low Stock'], ['#ef4444', 'Out of Stock'], ['#8b5cf6', 'EV Station']].map(([c, l]) => (

@@ -45,11 +45,15 @@ exports.filterPumps = async (req, res, next) => {
 
 exports.getNearbyPumps = async (req, res, next) => {
   try {
-    const { lat, lng, radius } = req.query;
+    const { lat, lng, radius, radiusKm } = req.query;
     if (!lat || !lng) {
       return res.status(400).json({ success: false, message: 'Latitude and longitude are required' });
     }
-    const pumps = await pumpService.getNearby(lat, lng, radius ? parseFloat(radius) : 5);
+    
+    // Support both naming conventions
+    const searchRadius = parseFloat(radiusKm || radius || 5);
+    
+    const pumps = await pumpService.getNearby(lat, lng, searchRadius, req.query);
     res.json({ success: true, message: 'Nearby stations fetched successfully', data: pumps });
   } catch (error) {
     next(error);

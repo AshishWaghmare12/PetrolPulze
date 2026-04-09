@@ -255,18 +255,18 @@ const FeatureCard = ({ icon, title, desc, accent = '#4f46e5', delay = 0 }) => {
 };
 
 const FEATURES = [
-  { icon: '⚡', title: 'Smart Nearest Ranking', desc: 'Real-time weighted score: open status, stock %, ETA, distance, rating.', accent: '#4f46e5' },
-  { icon: '🗺️', title: 'Drive-Time Reachability', desc: 'See exactly which stations are reachable in 5, 10, or 15 minutes from your location.', accent: '#f59e0b' },
-  { icon: '🔥', title: 'Fuel Price Heatmap', desc: 'Visualise price variations across Mumbai areas. Find the cheapest zone at a glance.', accent: '#f59e0b' },
-  { icon: '🚨', title: 'Emergency Low-Fuel Mode', desc: 'One tap finds the closest open station with available stock when you\'re on fumes.', accent: '#ef4444' },
-  { icon: '⚖️', title: 'Compare Stations', desc: 'Side-by-side comparison of up to 3 stations — price, stock, distance, services, trust.', accent: '#7c3aed' },
-  { icon: '🤝', title: 'Community Reports', desc: 'Crowd-sourced real-time updates on closures, price changes, and queue lengths.', accent: '#4f46e5' },
+  { icon: '🗺️', title: 'Drive-Time Reachability', desc: 'See exactly which stations are reachable in 5, 10, or 15 minutes with real-time isochrones.', accent: '#4f46e5' },
+  { icon: '📊', title: 'Real-time Stock Tracking', desc: 'Check verified fuel stock percentages and availability for Petrol, Diesel, CNG, and EV.', accent: '#06bd7a' },
+  { icon: '🚨', title: 'Easy to Find Petrol Pump', desc: 'One-tap access to find the closest verified open station when you\'re running on fumes.', accent: '#ef4444' },
+  { icon: '🔍', title: 'Smart Proximity Search', desc: 'Intelligently ranked results based on distance, open status, and verified user ratings.', accent: '#f59e0b' },
+  { icon: '⚡', title: 'Multi-Fuel Support', desc: 'Seamlessly filter through networks for EVs, CNG vehicles, and traditional internal combustion.', accent: '#7c3aed' },
+  { icon: '🛡️', title: 'Station Trust Scores', desc: 'Reliability ratings based on verified data freshness to ensure you always find a functional pump.', accent: '#4f46e5' },
 ];
 
 /* ─────────────────────────────────────────────
-   STATION PREVIEW CARD (mock data visual)
+   STATION PREVIEW CARD (dynamic data)
 ───────────────────────────────────────────── */
-const MockStationCard = ({ name, area, dist, eta, rating, stocks, delay = 0 }) => (
+const StationPreviewCard = ({ station, delay = 0 }) => (
   <Reveal delay={delay}>
     <div style={{
       background: 'var(--color-surface)', border: '1px solid var(--color-border)',
@@ -275,22 +275,26 @@ const MockStationCard = ({ name, area, dist, eta, rating, stocks, delay = 0 }) =
     }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8 }}>
         <div>
-          <div style={{ fontWeight: 700, fontSize: 15, color: 'var(--color-text)', marginBottom: 2 }}>{name}</div>
-          <div style={{ fontSize: 12, color: 'var(--color-text-muted)' }}>{area}</div>
+          <div style={{ fontWeight: 700, fontSize: 15, color: 'var(--color-text)', marginBottom: 2 }}>{station.name}</div>
+          <div style={{ fontSize: 12, color: 'var(--color-text-muted)' }}>{station.area}</div>
         </div>
-        <span style={{ padding: '3px 10px', borderRadius: '999px', fontSize: 10, fontWeight: 700, background: '#dcfce7', color: '#15803d' }}>OPEN</span>
+        <span style={{
+          padding: '3px 10px', borderRadius: '999px', fontSize: 10, fontWeight: 700,
+          background: station.open_now ? '#dcfce7' : '#fee2e2',
+          color: station.open_now ? '#15803d' : '#dc2626'
+        }}>
+          {station.open_now ? 'OPEN' : 'CLOSED'}
+        </span>
       </div>
       <div style={{ display: 'flex', gap: 16, fontSize: 12, color: 'var(--color-text-muted)', marginBottom: 10 }}>
-        <span>📍 {dist}</span><span>⏱ {eta}</span><span style={{ color: '#f59e0b' }}>★ {rating}</span>
+        <span>📍 {parseFloat(station.distanceKm || 0).toFixed(1)} km</span>
+        <span>⏱ {Math.round((station.distanceKm || 0) * 3)} min</span>
+        <span style={{ color: '#f59e0b' }}>★ {station.rating || 4.5}</span>
       </div>
       <div style={{ display: 'flex', gap: 6 }}>
-        {stocks.map(([t, avail]) => (
-          <span key={t} style={{
-            padding: '2px 8px', borderRadius: '999px', fontSize: 11, fontWeight: 600,
-            background: avail ? '#dcfce7' : '#fee2e2',
-            color: avail ? '#15803d' : '#dc2626',
-          }}>{t}</span>
-        ))}
+        {station.petrol_available && <span style={{ padding: '2px 8px', borderRadius: '999px', fontSize: 11, fontWeight: 600, background: '#dcfce7', color: '#15803d' }}>Petrol</span>}
+        {station.diesel_available && <span style={{ padding: '2px 8px', borderRadius: '999px', fontSize: 11, fontWeight: 600, background: '#dcfce7', color: '#15803d' }}>Diesel</span>}
+        {station.ev_charging_available && <span style={{ padding: '2px 8px', borderRadius: '999px', fontSize: 11, fontWeight: 600, background: '#dbf4ff', color: '#0369a1' }}>EV</span>}
       </div>
     </div>
   </Reveal>
@@ -301,13 +305,32 @@ const MockStationCard = ({ name, area, dist, eta, rating, stocks, delay = 0 }) =
 ───────────────────────────────────────────── */
 export default function HomePage() {
   const navigate = useNavigate();
-  const { locateUser } = useMapStore();
+  const { locateUser, userLocation } = useMapStore();
   const [heroVisible, setHeroVisible] = useState(false);
+  const [nearbyPumps, setNearbyPumps] = useState([]);
 
   useEffect(() => {
     const t = setTimeout(() => setHeroVisible(true), 100);
     return () => clearTimeout(t);
   }, []);
+
+  // Fetch real nearby pumps
+  useEffect(() => {
+    const fetchNearby = async () => {
+      try {
+        const lat = userLocation?.lat || 19.1235; // Default Mumbai
+        const lng = userLocation?.lng || 72.8872;
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/pumps/nearby?lat=${lat}&lng=${lng}&radius=10`);
+        const data = await res.json();
+        if (data.success) {
+          setNearbyPumps(data.data.slice(0, 3));
+        }
+      } catch (err) {
+        console.error('Failed to fetch nearby pumps for landing:', err);
+      }
+    };
+    fetchNearby();
+  }, [userLocation]);
 
   const handleExplore = () => { locateUser(); navigate('/map'); };
 
@@ -345,8 +368,9 @@ export default function HomePage() {
             color: 'var(--color-text)',
             marginBottom: 20,
             opacity: heroVisible ? 1 : 0,
-            transform: heroVisible ? 'none' : 'translateY(20px)',
-            transition: 'all 0.7s ease 0.1s',
+            transform: heroVisible ? 'translateY(0) scale(1)' : 'translateY(40px) scale(0.95)',
+            transition: 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1)',
+            willChange: 'transform, opacity'
           }}>
             Never Run Out of Fuel
             <br />
@@ -379,7 +403,11 @@ export default function HomePage() {
       {/* ══════════════════════════════════════
           PROBLEM SECTION
       ══════════════════════════════════════ */}
-      <section style={{ padding: '110px 24px', background: 'var(--color-surface)' }}>
+      <section style={{
+        padding: '110px 24px',
+        background: 'linear-gradient(180deg, var(--color-surface) 0%, rgba(79,70,229,0.03) 100%)',
+        position: 'relative'
+      }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }}>
           <Reveal dir="left">
             <div>
@@ -388,9 +416,10 @@ export default function HomePage() {
                 Highway Fuel<br />Anxiety is Real
               </h2>
               <p style={{ fontSize: 16, color: 'var(--color-text-muted)', lineHeight: 1.75, marginBottom: 32 }}>
-                More than 3 million drivers on Mumbai highways face fuel anxiety daily.
-                Outdated maps, wrong stock info, and no real-time routing cost people
-                hours and emergency repair bills.
+                Highway travel in India often becomes burdensome when travelers run out of fuel far from cities.
+                In many cases, drivers are unsure which nearby petrol pumps are operational, what type of fuel is available,
+                or whether sufficient fuel stock exists at that station. The lack of real-time fuel information leads to
+                wasted travel, panic situations, and inefficient fuel management on Indian roads.
               </p>
               <div style={{ display: 'flex', gap: 40 }}>
                 {[['95%', "of stranded drivers had a nearby open station they didn't know about"],
@@ -404,16 +433,23 @@ export default function HomePage() {
             </div>
           </Reveal>
 
-          {/* Animated station list mockup */}
+          {/* Real station list preview */}
           <Reveal dir="right" delay={0.15}>
             <div>
-              <div style={{ padding: '8px 14px', background: 'var(--color-primary-light)', borderRadius: 'var(--radius-md)', display: 'inline-flex', alignItems: 'center', gap: 7, marginBottom: 14 }}>
-                <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#4f46e5' }} />
+              <div style={{ padding: '8px 14px', background: 'rgba(79,70,229,0.08)', borderRadius: 'var(--radius-md)', display: 'inline-flex', alignItems: 'center', gap: 7, marginBottom: 14 }}>
+                <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#4f46e5', animation: 'pulse 2s infinite' }} />
                 <span style={{ fontSize: 11, fontWeight: 700, color: '#4f46e5', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Best Available Nearby</span>
               </div>
-              <MockStationCard name="Shell V-Power · Andheri W" area="Andheri West" dist="2.4 km" eta="6 min" rating="4.8" stocks={[['Petrol', true], ['Diesel', true], ['EV', true]]} delay={0.1} />
-              <MockStationCard name="HP EV Hub · Malad East" area="Malad East" dist="3.1 km" eta="8 min" rating="4.7" stocks={[['Petrol', true], ['EV', true]]} delay={0.2} />
-              <MockStationCard name="Indian Oil · Borivali E" area="Borivali East" dist="5.6 km" eta="13 min" rating="4.3" stocks={[['Petrol', true], ['Diesel', true], ['CNG', true]]} delay={0.3} />
+
+              {nearbyPumps.length > 0 ? (
+                nearbyPumps.map((station, idx) => (
+                  <StationPreviewCard key={station.id} station={station} delay={idx * 0.1} />
+                ))
+              ) : (
+                <div style={{ padding: 40, textAlign: 'center', color: 'var(--color-text-dim)', fontSize: 14 }}>
+                  Locating nearby stations...
+                </div>
+              )}
             </div>
           </Reveal>
         </div>
@@ -422,7 +458,10 @@ export default function HomePage() {
       {/* ══════════════════════════════════════
           FEATURES GRID
       ══════════════════════════════════════ */}
-      <section style={{ padding: '110px 24px', background: 'var(--color-bg)' }}>
+      <section style={{
+        padding: '110px 24px',
+        background: 'linear-gradient(180deg, rgba(79,70,229,0.03) 0%, var(--color-bg) 100%)'
+      }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <Reveal>
             <div style={{ textAlign: 'center', marginBottom: 64 }}>
@@ -431,7 +470,7 @@ export default function HomePage() {
                 Real-time Network<br />at Your Fingertips
               </h2>
               <p style={{ fontSize: 16, color: 'var(--color-text-dim)', maxWidth: 520, margin: '0 auto', lineHeight: 1.7 }}>
-                Never make fuel stops guesswork. PetrolPulze is always on the
+                Never make fuel stops guesswork. PetroPluze is always on the
                 map, ready to find your optimal route.
               </p>
             </div>
@@ -604,7 +643,7 @@ export default function HomePage() {
           </Reveal>
           <Reveal delay={0.15}>
             <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 42, fontWeight: 800, color: '#fff', letterSpacing: '-0.03em', marginBottom: 28 }}>
-              Drive Smarter with PetrolPulze
+              Drive Smarter with PetroPluze
             </h2>
             <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
               <Link to="/auth" className="btn btn-ghost" style={{ padding: '13px 26px', fontSize: 15, borderColor: 'rgba(255,255,255,0.2)', color: '#fff' }}>Login</Link>
@@ -619,9 +658,9 @@ export default function HomePage() {
         <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <svg width="22" height="22" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="9" fill="#4f46e5" /><path d="M16 6L22 13L16 20L10 13Z" fill="white" /><path d="M16 20V27" stroke="white" strokeWidth="2.5" strokeLinecap="round" /></svg>
-            <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 15, color: 'var(--color-text)' }}>PetrolPulze</span>
+            <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 15, color: 'var(--color-text)' }}>PetroPluze</span>
           </div>
-          <div style={{ fontSize: 12, color: '#94a3b8' }}>© PetrolPulze · Colloquium 2026</div>
+          <div style={{ fontSize: 12, color: '#94a3b8' }}>© PetroPluze · Colloquium 2026</div>
           <div style={{ display: 'flex', gap: 24 }}>
             {['Privacy Policy', 'Terms of Service', 'Highway Assistance'].map(l => (
               <a key={l} href="#" style={{ fontSize: 13, color: '#94a3b8', textDecoration: 'none' }}

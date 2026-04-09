@@ -38,13 +38,13 @@ function FuelAvailabilityCard({ fuel }) {
     }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 12, alignItems: 'center' }}>
         <span style={{ fontSize: '10px', color: '#94a3b8', fontWeight: 700, textTransform: 'uppercase' }}>{subLabel}</span>
-        <span style={{ 
+        <span style={{
           fontSize: '9px', fontWeight: 800, padding: '4px 8px', borderRadius: '6px',
           background: statusBg, color: statusColor, textTransform: 'uppercase'
         }}>{statusLabel}</span>
       </div>
       <div style={{ fontSize: '18px', fontWeight: 800, marginBottom: 16 }}>{typeLabel === 'Petrol' ? 'Petrol (V-Power)' : typeLabel}</div>
-      
+
       <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', color: '#64748b', marginBottom: 6 }}>
         <span>Stock Level</span>
         <span style={{ fontWeight: 700 }}>{fuel.stockPercent}%</span>
@@ -52,7 +52,7 @@ function FuelAvailabilityCard({ fuel }) {
       <div style={{ height: '6px', background: '#f1f5f9', borderRadius: '3px', marginBottom: 20, overflow: 'hidden' }}>
         <div style={{ height: '100%', width: `${fuel.stockPercent}%`, background: statusColor, borderRadius: '3px', transition: 'width 1s ease' }} />
       </div>
-      
+
       <div style={{ fontSize: '24px', fontWeight: 800, color: '#0f172a' }}>
         {priceLabel.split('/')[0]}<span style={{ fontSize: '14px', color: '#94a3b8', fontWeight: 400 }}>/{priceLabel.split('/')[1]}</span>
       </div>
@@ -63,13 +63,13 @@ function FuelAvailabilityCard({ fuel }) {
 function SimilarStationCard({ station }) {
   const distance = (station.distance || 0).toFixed(1);
   const bestFuel = station.fuels?.[0] || {};
-  
+
   return (
     <Link to={`/station/${station.id}`} style={{ textDecoration: 'none', color: 'inherit', flex: '1 1 320px' }}>
-      <div style={{ 
-        background: '#ffffff', 
-        border: '1px solid #eef2f6', 
-        borderRadius: '24px', 
+      <div style={{
+        background: '#ffffff',
+        border: '1px solid #eef2f6',
+        borderRadius: '24px',
         padding: '24px',
         position: 'relative',
         transition: 'transform 0.2s ease, box-shadow 0.2s ease',
@@ -90,17 +90,17 @@ function SimilarStationCard({ station }) {
             {distance} KM AWAY
           </div>
         </div>
-        
+
         <div style={{ marginBottom: '24px' }}>
           <div style={{ fontSize: '16px', fontWeight: 800, color: '#0f172a', marginBottom: '4px' }}>{station.name}</div>
           <div style={{ fontSize: '13px', color: '#94a3b8' }}>{station.address?.split(',').slice(0, 2).join(',')}</div>
         </div>
-        
+
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div style={{ display: 'flex', gap: '8px' }}>
-             {station.petrol_available && <span style={{ padding: '4px 10px', borderRadius: '8px', background: '#dcfce7', color: '#10b981', fontSize: '10px', fontWeight: 800 }}>Petrol</span>}
-             {station.diesel_available && <span style={{ padding: '4px 10px', borderRadius: '8px', background: '#dcfce7', color: '#10b981', fontSize: '10px', fontWeight: 800 }}>Diesel</span>}
-             {station.cng_available && <span style={{ padding: '4px 10px', borderRadius: '8px', background: '#fee2e2', color: '#ef4444', fontSize: '10px', fontWeight: 800 }}>CNG Low</span>}
+            {station.petrol_available && <span style={{ padding: '4px 10px', borderRadius: '8px', background: '#dcfce7', color: '#10b981', fontSize: '10px', fontWeight: 800 }}>Petrol</span>}
+            {station.diesel_available && <span style={{ padding: '4px 10px', borderRadius: '8px', background: '#dcfce7', color: '#10b981', fontSize: '10px', fontWeight: 800 }}>Diesel</span>}
+            {station.cng_available && <span style={{ padding: '4px 10px', borderRadius: '8px', background: '#fee2e2', color: '#ef4444', fontSize: '10px', fontWeight: 800 }}>CNG Low</span>}
           </div>
           <div style={{ fontSize: '18px', fontWeight: 800, color: '#0f172a' }}>
             ₹{bestFuel.price?.toFixed(2) || '106.31'}
@@ -148,10 +148,10 @@ export default function StationDetailPage() {
 
         // Load similar
         try {
-          const simRes = await stationsApi.nearby({ 
-            lat: safeData.latitude, 
-            lng: safeData.longitude, 
-            radius: 5 
+          const simRes = await stationsApi.nearby({
+            lat: safeData.latitude,
+            lng: safeData.longitude,
+            radius: 5
           });
           if (simRes && simRes.success) {
             setSimilar((simRes.data || []).filter(x => x.id !== id).slice(0, 3));
@@ -171,18 +171,31 @@ export default function StationDetailPage() {
   };
 
   const handleRoute = async () => {
-    if (!userLocation) { alert('Enable location first'); return; }
+    if (!userLocation) {
+      alert('Locating you... please wait a moment.');
+      await useMapStore.getState().locateUser();
+      // Retry in 2s if location arrives
+      setTimeout(() => {
+        const freshLoc = useMapStore.getState().userLocation;
+        if (freshLoc) handleRoute();
+      }, 2000);
+      return;
+    }
     try {
       const res = await mapApi.route({
-        sourceLat: userLocation.lat, sourceLng: userLocation.lng,
-        destLat: station.latitude, destLng: station.longitude,
+        sourceLat: userLocation.lat,
+        sourceLng: userLocation.lng,
+        destLat: station.latitude,
+        destLng: station.longitude,
       });
       if (res.success) {
         useMapStore.getState().setSelectedStation(station);
         setActiveRoute(res.data);
         navigate('/map');
       }
-    } catch (err) { alert('Could not calculate route'); }
+    } catch (err) {
+      alert('Could not calculate route. Please ensure location is enabled.');
+    }
   };
 
   if (loading) return <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Loading...</div>;
@@ -191,21 +204,21 @@ export default function StationDetailPage() {
   return (
     <div style={{ minHeight: '100vh', background: '#f8fafc', paddingTop: '80px', paddingBottom: '60px' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
-        
+
         {/* Header Section */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '32px' }}>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '8px' }}>
               <h1 style={{ fontSize: '32px', fontWeight: 800, color: '#0f172a' }}>{station.name}</h1>
               {station.open_now ? (
-                <span style={{ 
-                  background: '#dcfce7', color: '#10b981', padding: '4px 12px', borderRadius: '10px', 
-                  fontSize: '11px', fontWeight: 800, textTransform: 'uppercase' 
+                <span style={{
+                  background: '#dcfce7', color: '#10b981', padding: '4px 12px', borderRadius: '10px',
+                  fontSize: '11px', fontWeight: 800, textTransform: 'uppercase'
                 }}>OPEN {station.fuels?.[0]?.stockPercent > 60 ? '— HIGH STOCK' : ''}</span>
               ) : (
-                <span style={{ 
-                  background: '#fee2e2', color: '#ef4444', padding: '4px 12px', borderRadius: '10px', 
-                  fontSize: '11px', fontWeight: 800, textTransform: 'uppercase' 
+                <span style={{
+                  background: '#fee2e2', color: '#ef4444', padding: '4px 12px', borderRadius: '10px',
+                  fontSize: '11px', fontWeight: 800, textTransform: 'uppercase'
                 }}>CLOSED</span>
               )}
             </div>
@@ -225,10 +238,10 @@ export default function StationDetailPage() {
 
         {/* Main Content Grid */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 340px', gap: '40px', marginBottom: '60px' }}>
-          
+
           {/* Left Column */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
-            
+
             {/* Fuel Availability */}
             <section>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
@@ -282,14 +295,14 @@ export default function StationDetailPage() {
 
           {/* Right Column (Sidebar) */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-            
+
             {/* Map Preview */}
             <div className="glass-card" style={{ padding: '12px', borderRadius: '24px' }}>
-              <MiniMap 
-                center={{ lat: station.latitude, lng: station.longitude }} 
-                markers={[station]} 
-                zoom={14} 
-                height={260} 
+              <MiniMap
+                center={{ lat: station.latitude, lng: station.longitude }}
+                markers={[station]}
+                zoom={14}
+                height={260}
               />
               <div style={{ padding: '16px 8px 8px', display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <div style={{ width: '40px', height: '40px', background: '#ecfeff', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px' }}>🔄</div>
@@ -308,9 +321,9 @@ export default function StationDetailPage() {
                 <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><span style={{ color: '#10b981' }}>✓</span> Digital Payments Accepted</li>
                 <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><span style={{ color: '#f59e0b' }}>⚠</span> High demand area — queue possible</li>
               </ul>
-              <button style={{ 
-                width: '100%', padding: '12px', borderRadius: '12px', background: 'rgba(255,255,255,0.06)', 
-                border: 'none', color: '#fff', fontWeight: 700, fontSize: '13px', cursor: 'pointer' 
+              <button style={{
+                width: '100%', padding: '12px', borderRadius: '12px', background: 'rgba(255,255,255,0.06)',
+                border: 'none', color: '#fff', fontWeight: 700, fontSize: '13px', cursor: 'pointer'
               }}>View Full History</button>
             </div>
 
@@ -319,13 +332,13 @@ export default function StationDetailPage() {
 
         {/* Similar Nearby Stations - Horizontal Section Below */}
         <section style={{ borderTop: '1px solid #eef2f6', paddingTop: '40px' }}>
-           <h2 style={{ fontSize: '24px', fontWeight: 800, marginBottom: '32px', display: 'flex', alignItems: 'center', gap: '12px' }}>
-             <span style={{ fontSize: '20px', background: '#ecfeff', color: '#06b6d4', width: '40px', height: '40px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>🧭</span>
-             Similar Nearby Stations
-           </h2>
-           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
-             {similar.map(s => <SimilarStationCard key={s.id} station={s} />)}
-           </div>
+          <h2 style={{ fontSize: '24px', fontWeight: 800, marginBottom: '32px', display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <span style={{ fontSize: '20px', background: '#ecfeff', color: '#06b6d4', width: '40px', height: '40px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>🧭</span>
+            Similar Nearby Stations
+          </h2>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
+            {similar.map(s => <SimilarStationCard key={s.id} station={s} />)}
+          </div>
         </section>
 
       </div>

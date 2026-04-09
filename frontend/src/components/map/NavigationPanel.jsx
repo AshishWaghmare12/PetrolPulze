@@ -31,7 +31,7 @@ export default function NavigationPanel({ activeRoute, onClear }) {
       overflow: 'hidden',
       boxShadow: 'var(--shadow-sm)'
     }}>
-      <div 
+      <div
         style={{
           background: 'rgba(79,70,229,0.06)',
           padding: '11px 14px',
@@ -49,9 +49,9 @@ export default function NavigationPanel({ activeRoute, onClear }) {
             {activeRoute.distance} km · {activeRoute.duration} min
           </div>
         </div>
-        <button 
-          onClick={(e) => { e.stopPropagation(); onClear(); }} 
-          className="btn btn-ghost" 
+        <button
+          onClick={(e) => { e.stopPropagation(); onClear(); }}
+          className="btn btn-ghost"
           style={{ fontSize: 11, padding: '4px 8px', borderColor: 'rgba(239,68,68,0.2)', color: '#ef4444' }}
         >
           ✕ Exit

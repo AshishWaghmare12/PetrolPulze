@@ -3,10 +3,10 @@ import { Link, useLocation } from 'react-router-dom';
 
 const Logo = () => (
   <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-    <rect width="32" height="32" rx="9" fill="#4f46e5"/>
-    <path d="M16 6L22 13L16 20L10 13Z" fill="white" opacity="0.95"/>
-    <path d="M16 20V27" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
-    <circle cx="16" cy="27" r="2" fill="white"/>
+    <rect width="32" height="32" rx="9" fill="#4f46e5" />
+    <path d="M16 6L22 13L16 20L10 13Z" fill="white" opacity="0.95" />
+    <path d="M16 20V27" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
+    <circle cx="16" cy="27" r="2" fill="white" />
   </svg>
 );
 
@@ -39,7 +39,7 @@ export default function Navbar() {
             fontWeight: 700, fontSize: 18,
             color: 'var(--color-text)', letterSpacing: '-0.02em',
           }}>
-            PetrolPulze
+            PetroPluze
           </span>
         </Link>
 

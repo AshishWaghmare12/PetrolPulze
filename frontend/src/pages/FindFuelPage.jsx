@@ -24,9 +24,9 @@ function FilterDropdown({ value, onChange, options, icon, placeholder }) {
       <div style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', fontSize: '14px' }}>
         {icon}
       </div>
-      <select 
-        value={value} 
-        onChange={e => onChange(e.target.value)} 
+      <select
+        value={value}
+        onChange={e => onChange(e.target.value)}
         style={{
           width: '100%',
           height: '52px',
@@ -84,7 +84,7 @@ function StationRow({ station, onRoute, onDetails, rank }) {
       onClick={() => onDetails(station.id)}
     >
       <div style={{
-        width: rank === 0 ? '56px' : '44px', height: rank === 0 ? '56px' : '44px', 
+        width: rank === 0 ? '56px' : '44px', height: rank === 0 ? '56px' : '44px',
         borderRadius: '16px', flexShrink: 0,
         background: rank === 0 ? '#4f46e5' : '#f8fafc',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -116,7 +116,7 @@ function StationRow({ station, onRoute, onDetails, rank }) {
             </span>
           ))}
           <span style={{ marginLeft: 'auto', fontWeight: 800, color: '#0f172a', fontSize: '15px' }}>
-            {dist.toFixed(1)} km 
+            {dist.toFixed(1)} km
           </span>
         </div>
       </div>
@@ -265,31 +265,31 @@ export default function FindFuelPage() {
             </div>
 
             {/* Styled Dropdowns */}
-            <FilterDropdown 
-              value={fuelType} 
-              onChange={setFuelType} 
-              options={FUEL_TYPES} 
-              icon="⛽" 
-              placeholder="Fuel Type" 
-            />
-            
-            <FilterDropdown 
-              value={status} 
-              onChange={setStatus} 
-              options={[{ value: 'all', label: 'All Stations' }, { value: 'open', label: 'Open Now' }]} 
-              icon="🕒" 
-              placeholder="Status" 
+            <FilterDropdown
+              value={fuelType}
+              onChange={setFuelType}
+              options={FUEL_TYPES}
+              icon="⛽"
+              placeholder="Fuel Type"
             />
 
-            <FilterDropdown 
-              value={radius} 
-              onChange={val => setRadius(Number(val))} 
-              options={RADII} 
-              icon="📍" 
-              placeholder="Distance" 
+            <FilterDropdown
+              value={status}
+              onChange={setStatus}
+              options={[{ value: 'all', label: 'All Stations' }, { value: 'open', label: 'Open Now' }]}
+              icon="🕒"
+              placeholder="Status"
             />
 
-            <button onClick={() => handleSearch()} disabled={loading} className="btn-premium" style={{ 
+            <FilterDropdown
+              value={radius}
+              onChange={val => setRadius(Number(val))}
+              options={RADII}
+              icon="📍"
+              placeholder="Distance"
+            />
+
+            <button onClick={() => handleSearch()} disabled={loading} className="btn-premium" style={{
               flex: '0 0 auto', height: '52px', padding: '0 32px', fontSize: 15, background: '#0f172a', borderRadius: '18px',
               boxShadow: '0 8px 16px rgba(15,23,42,0.15)'
             }}>

@@ -1,6 +1,6 @@
 const predictPrices = asyncHandler(async (req, res) => {
   const { stationId, fuelType } = req.query;
-  const basePrice = 100.0; 
+  const basePrice = 100.0;
   const days = 7;
   const forecast = [];
   let currentPrice = basePrice;
@@ -37,7 +37,7 @@ const optimizeRoute = asyncHandler(async (req, res) => {
   // Find stations near the mid-point or along the general path
   // For a hackathon, we'll fetch all active stations and filter by distance from the line
   const allStations = await Station.findAll({ where: { isActive: true } });
-  
+
   const oLat = parseFloat(originLat);
   const oLng = parseFloat(originLng);
   const dLat = parseFloat(destLat);
@@ -55,7 +55,7 @@ const optimizeRoute = asyncHandler(async (req, res) => {
       const distD = haversineDistance(dLat, dLng, sLat, sLng);
       const totalDist = distO + distD;
       const detour = totalDist - directDistance;
-      
+
       const fuel = (s.fuels || []).find(f => f.type === (fuelType || 'PETROL'));
       const price = fuel ? fuel.price : 106.31;
 

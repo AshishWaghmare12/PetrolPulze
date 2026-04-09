@@ -10,11 +10,11 @@ api.interceptors.response.use(
 );
 
 export const stationsApi = {
-  // Uses /api/pumps now instead of /api/stations
+  // Matched with active backend app.js (/api/pumps)
   getAll:    (params) => api.get('/pumps', { params }),
-  search:    (params) => api.get('/pumps/search', { params }), // queries 'q'
-  nearby:    (params) => api.get('/pumps/nearby', { params }), // lat, lng, radius
-  nearest:   (params) => api.get('/pumps/nearby', { params }), // route to same backend
+  search:    (params) => api.get('/pumps/search', { params }), 
+  nearby:    (params) => api.get('/pumps/nearby', { params }), 
+  nearest:   (params) => api.get('/pumps/nearby', { params }), // Backend uses /nearby for closeness
   getById:   (id)     => api.get(`/pumps/${id}`),
   getSimilar:(id)     => api.get('/pumps/nearby', { params: { lat: 19.07, lng: 72.87, radius: 10 } }),
   updateStatus: (id, data) => api.patch(`/pumps/${id}/status`, data),
@@ -24,7 +24,7 @@ export const stationsApi = {
 
 export const mapApi = {
   markers:    (params) => api.get('/pumps', { params }),
-  route:      (params) => api.get('/route', { params }), // sourceLat, sourceLng, destLat, destLng
+  route:      (params) => api.get('/route', { params }), // expects sourceLat, sourceLng, destLat, destLng
   distance:   (params) => Promise.resolve({ data: [] }),
   geocode:    (address) => Promise.resolve({ data: [] }),
   autocomplete: (q, lat, lng) => api.get('/pumps/search', { params: { q, lat, lng } }),

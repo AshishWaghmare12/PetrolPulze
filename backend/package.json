@@ -1,7 +1,7 @@
 {
-  "name": "petrolpulze-x-backend",
+  "name": "petropluze-x-backend",
   "version": "1.0.0",
-  "description": "PetrolPulze X - Smart Fuel Station Finder API",
+  "description": "PetroPluze X - Smart Fuel Station Finder API",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",

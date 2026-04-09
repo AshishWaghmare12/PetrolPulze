@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 5000;
 const startServer = () => {
   try {
     app.listen(PORT, () => {
-      console.log(`🚀 PetrolPulze X API running on http://localhost:${PORT}`);
+      console.log(`🚀 PetroPluze X API running on http://localhost:${PORT}`);
       console.log(`   Environment: ${process.env.NODE_ENV || 'development'}`);
     });
   } catch (err) {

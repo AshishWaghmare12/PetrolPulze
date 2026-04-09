@@ -114,7 +114,7 @@ export default function MapView({ onStationSelect, height = '100%' }) {
         swLat: bounds.getSouth(), swLng: bounds.getWest(),
       });
       if (res.success) renderMarkers(res.data);
-    } catch {}
+    } catch { }
   };
 
   const renderMarkers = useCallback((stations) => {
@@ -131,7 +131,7 @@ export default function MapView({ onStationSelect, height = '100%' }) {
       el.style.width = '32px';
       el.style.height = '32px';
       el.style.cursor = 'pointer';
-      
+
       const inner = document.createElement('div');
       inner.className = 'marker-inner';
       inner.style.cssText = `
@@ -257,7 +257,7 @@ export default function MapView({ onStationSelect, height = '100%' }) {
   // Isochrone layer
   useEffect(() => {
     if (!map.current || !mapReady) return;
-    ['iso-2','iso-1','iso-0'].forEach(id => { if (map.current.getLayer(id)) map.current.removeLayer(id); });
+    ['iso-2', 'iso-1', 'iso-0'].forEach(id => { if (map.current.getLayer(id)) map.current.removeLayer(id); });
     if (map.current.getSource('isochrone')) map.current.removeSource('isochrone');
     if (!isochrones?.length) return;
 
@@ -265,7 +265,7 @@ export default function MapView({ onStationSelect, height = '100%' }) {
       type: 'geojson',
       data: { type: 'FeatureCollection', features: isochrones },
     });
-    const fills = ['rgba(139,92,246,0.10)','rgba(59,130,246,0.10)','rgba(79,70,229,0.10)'];
+    const fills = ['rgba(139,92,246,0.10)', 'rgba(59,130,246,0.10)', 'rgba(79,70,229,0.10)'];
     isochrones.forEach((_, i) => {
       map.current.addLayer({
         id: `iso-${i}`, type: 'fill', source: 'isochrone',
@@ -289,10 +289,10 @@ export default function MapView({ onStationSelect, height = '100%' }) {
     userMarkerRef.current = new mapboxgl.Marker({ element: el })
       .setLngLat([userLocation.lng, userLocation.lat])
       .addTo(map.current);
-    
+
     // Only fly if no active route (MapPage handles complex logic)
     if (!activeRoute) {
-       map.current.flyTo({ center: [userLocation.lng, userLocation.lat], zoom: 13, duration: 1500 });
+      map.current.flyTo({ center: [userLocation.lng, userLocation.lat], zoom: 13, duration: 1500 });
     }
   }, [userLocation, activeRoute]);
 
@@ -316,24 +316,12 @@ export default function MapView({ onStationSelect, height = '100%' }) {
   return (
     <div style={{ width: '100%', height, position: 'relative' }}>
       <div ref={mapContainer} style={{ width: '100%', height: '100%' }} />
-      
+
       {/* Map Controls */}
       <div style={{
         position: 'absolute', top: 16, left: 16, zIndex: 10,
         display: 'flex', flexDirection: 'column', gap: 8,
       }}>
-        {selectedStation && (
-          <button onClick={() => optimizeRoute({ lat: selectedStation.latitude, lng: selectedStation.longitude })} disabled={optimizing} style={{
-            padding: '10px 14px', background: 'linear-gradient(135deg, #4f46e5, #7c3aed)',
-            border: 'none', borderRadius: 'var(--radius-md)',
-            fontSize: 13, fontWeight: 600, color: '#fff', cursor: optimizing ? 'not-allowed' : 'pointer',
-            display: 'flex', alignItems: 'center', gap: 8,
-            boxShadow: '0 4px 12px rgba(79,70,229,0.3)', transition: 'all 0.2s ease',
-          }}>
-            <span style={{ fontSize: 16 }}>⚡</span>
-            {optimizing ? 'Optimizing...' : 'Find Cheapest'}
-          </button>
-        )}
       </div>
 
       {/* Route Optimization Panel */}

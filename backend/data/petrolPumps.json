@@ -23,12 +23,36 @@
     "phone": "022-28456789",
     "verified": true,
     "fuels": [
-      { "type": "PETROL", "price": 106.31, "status": "AVAILABLE", "stockPercent": 85 },
-      { "type": "DIESEL", "price": 94.27, "status": "AVAILABLE", "stockPercent": 70 },
-      { "type": "CNG", "price": 86.00, "status": "AVAILABLE", "stockPercent": 60 }
+      {
+        "type": "PETROL",
+        "price": 106.31,
+        "status": "AVAILABLE",
+        "stockPercent": 85
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.27,
+        "status": "AVAILABLE",
+        "stockPercent": 70
+      },
+      {
+        "type": "CNG",
+        "price": 86,
+        "status": "AVAILABLE",
+        "stockPercent": 60
+      }
     ],
-    "services": ["air", "washroom", "card_payment", "food"],
-    "timings": { "weekdays": "00:00 - 23:59", "saturday": "00:00 - 23:59", "sunday": "00:00 - 23:59" },
+    "services": [
+      "air",
+      "washroom",
+      "card_payment",
+      "food"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
     "queue_level": "low",
     "updated_at": "2024-04-10T08:00:00Z"
   },
@@ -42,7 +66,7 @@
     "state": "Maharashtra",
     "pincode": "400068",
     "latitude": 19.2505,
-    "longitude": 72.8530,
+    "longitude": 72.853,
     "petrol_available": true,
     "diesel_available": false,
     "cng_available": true,
@@ -56,11 +80,29 @@
     "phone": "022-28951234",
     "verified": true,
     "fuels": [
-      { "type": "PETROL", "price": 106.19, "status": "AVAILABLE", "stockPercent": 45 },
-      { "type": "CNG", "price": 86.00, "status": "AVAILABLE", "stockPercent": 30 }
+      {
+        "type": "PETROL",
+        "price": 106.19,
+        "status": "AVAILABLE",
+        "stockPercent": 45
+      },
+      {
+        "type": "CNG",
+        "price": 86,
+        "status": "AVAILABLE",
+        "stockPercent": 30
+      }
     ],
-    "services": ["air", "washroom", "card_payment"],
-    "timings": { "weekdays": "06:00 - 23:00", "saturday": "06:00 - 23:00", "sunday": "06:00 - 22:00" },
+    "services": [
+      "air",
+      "washroom",
+      "card_payment"
+    ],
+    "timings": {
+      "weekdays": "06:00 - 23:00",
+      "saturday": "06:00 - 23:00",
+      "sunday": "06:00 - 22:00"
+    },
     "queue_level": "medium",
     "updated_at": "2024-04-10T08:15:00Z"
   },
@@ -73,8 +115,8 @@
     "city": "Mumbai",
     "state": "Maharashtra",
     "pincode": "400092",
-    "latitude": 19.2360,
-    "longitude": 72.8340,
+    "latitude": 19.236,
+    "longitude": 72.834,
     "petrol_available": true,
     "diesel_available": true,
     "cng_available": false,
@@ -88,12 +130,38 @@
     "phone": "022-28919000",
     "verified": true,
     "fuels": [
-      { "type": "PETROL", "price": 112.50, "status": "AVAILABLE", "stockPercent": 90 },
-      { "type": "DIESEL", "price": 98.20, "status": "AVAILABLE", "stockPercent": 80 },
-      { "type": "EV", "price": 15.00, "status": "AVAILABLE", "stockPercent": 100 }
+      {
+        "type": "PETROL",
+        "price": 112.5,
+        "status": "AVAILABLE",
+        "stockPercent": 90
+      },
+      {
+        "type": "DIESEL",
+        "price": 98.2,
+        "status": "AVAILABLE",
+        "stockPercent": 80
+      },
+      {
+        "type": "EV",
+        "price": 15,
+        "status": "AVAILABLE",
+        "stockPercent": 100
+      }
     ],
-    "services": ["air", "washroom", "card_payment", "food", "ev_charging", "wifi"],
-    "timings": { "weekdays": "00:00 - 23:59", "saturday": "00:00 - 23:59", "sunday": "00:00 - 23:59" },
+    "services": [
+      "air",
+      "washroom",
+      "card_payment",
+      "food",
+      "ev_charging",
+      "wifi"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
     "queue_level": "low",
     "updated_at": "2024-04-10T10:00:00Z"
   },
@@ -106,27 +174,50 @@
     "city": "Mumbai",
     "state": "Maharashtra",
     "pincode": "400068",
-    "latitude": 19.2480,
-    "longitude": 72.8620,
+    "latitude": 19.248,
+    "longitude": 72.862,
     "petrol_available": true,
     "diesel_available": true,
     "cng_available": true,
     "ev_charging_available": false,
     "open_now": true,
     "open24Hours": true,
-    "rating": 4.0,
+    "rating": 4,
     "totalReviews": 1560,
     "trustScore": 85,
     "dataFreshness": "RECENT",
     "phone": "022-28481234",
     "verified": true,
     "fuels": [
-      { "type": "PETROL", "price": 106.31, "status": "AVAILABLE", "stockPercent": 65 },
-      { "type": "DIESEL", "price": 94.27, "status": "AVAILABLE", "stockPercent": 50 },
-      { "type": "CNG", "price": 86.00, "status": "AVAILABLE", "stockPercent": 40 }
+      {
+        "type": "PETROL",
+        "price": 106.31,
+        "status": "AVAILABLE",
+        "stockPercent": 65
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.27,
+        "status": "AVAILABLE",
+        "stockPercent": 50
+      },
+      {
+        "type": "CNG",
+        "price": 86,
+        "status": "AVAILABLE",
+        "stockPercent": 40
+      }
     ],
-    "services": ["air", "card_payment", "atm"],
-    "timings": { "weekdays": "00:00 - 23:59", "saturday": "00:00 - 23:59", "sunday": "00:00 - 23:59" },
+    "services": [
+      "air",
+      "card_payment",
+      "atm"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
     "queue_level": "high",
     "updated_at": "2024-04-10T11:00:00Z"
   },
@@ -139,8 +230,8 @@
     "city": "Mumbai",
     "state": "Maharashtra",
     "pincode": "400068",
-    "latitude": 19.2590,
-    "longitude": 72.8680,
+    "latitude": 19.259,
+    "longitude": 72.868,
     "petrol_available": true,
     "diesel_available": true,
     "cng_available": false,
@@ -154,11 +245,29 @@
     "phone": "022-28485566",
     "verified": false,
     "fuels": [
-      { "type": "PETROL", "price": 106.31, "status": "AVAILABLE", "stockPercent": 55 },
-      { "type": "DIESEL", "price": 94.27, "status": "AVAILABLE", "stockPercent": 45 }
+      {
+        "type": "PETROL",
+        "price": 106.31,
+        "status": "AVAILABLE",
+        "stockPercent": 55
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.27,
+        "status": "AVAILABLE",
+        "stockPercent": 45
+      }
     ],
-    "services": ["air", "washroom", "card_payment"],
-    "timings": { "weekdays": "00:00 - 23:59", "saturday": "00:00 - 23:59", "sunday": "00:00 - 23:59" },
+    "services": [
+      "air",
+      "washroom",
+      "card_payment"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
     "queue_level": "medium",
     "updated_at": "2024-04-10T12:00:00Z"
   },
@@ -172,7 +281,7 @@
     "state": "Maharashtra",
     "pincode": "400091",
     "latitude": 19.2315,
-    "longitude": 72.8180,
+    "longitude": 72.818,
     "petrol_available": true,
     "diesel_available": true,
     "cng_available": false,
@@ -186,12 +295,36 @@
     "phone": "022-28681122",
     "verified": true,
     "fuels": [
-      { "type": "PETROL", "price": 105.80, "status": "AVAILABLE", "stockPercent": 85 },
-      { "type": "DIESEL", "price": 93.50, "status": "AVAILABLE", "stockPercent": 75 },
-      { "type": "EV", "price": 14.00, "status": "AVAILABLE", "stockPercent": 100 }
+      {
+        "type": "PETROL",
+        "price": 105.8,
+        "status": "AVAILABLE",
+        "stockPercent": 85
+      },
+      {
+        "type": "DIESEL",
+        "price": 93.5,
+        "status": "AVAILABLE",
+        "stockPercent": 75
+      },
+      {
+        "type": "EV",
+        "price": 14,
+        "status": "AVAILABLE",
+        "stockPercent": 100
+      }
     ],
-    "services": ["air", "washroom", "card_payment", "ev_charging"],
-    "timings": { "weekdays": "06:00 - 23:30", "saturday": "06:00 - 23:30", "sunday": "07:00 - 23:00" },
+    "services": [
+      "air",
+      "washroom",
+      "card_payment",
+      "ev_charging"
+    ],
+    "timings": {
+      "weekdays": "06:00 - 23:30",
+      "saturday": "06:00 - 23:30",
+      "sunday": "07:00 - 23:00"
+    },
     "queue_level": "low",
     "updated_at": "2024-04-10T14:00:00Z"
   },
@@ -204,8 +337,8 @@
     "city": "Mumbai",
     "state": "Maharashtra",
     "pincode": "400068",
-    "latitude": 19.2550,
-    "longitude": 72.8420,
+    "latitude": 19.255,
+    "longitude": 72.842,
     "petrol_available": true,
     "diesel_available": true,
     "cng_available": false,
@@ -219,11 +352,29 @@
     "phone": "022-28945511",
     "verified": false,
     "fuels": [
-      { "type": "PETROL", "price": 106.05, "status": "AVAILABLE", "stockPercent": 60 },
-      { "type": "DIESEL", "price": 93.90, "status": "AVAILABLE", "stockPercent": 55 }
+      {
+        "type": "PETROL",
+        "price": 106.05,
+        "status": "AVAILABLE",
+        "stockPercent": 60
+      },
+      {
+        "type": "DIESEL",
+        "price": 93.9,
+        "status": "AVAILABLE",
+        "stockPercent": 55
+      }
     ],
-    "services": ["air", "washroom", "card_payment"],
-    "timings": { "weekdays": "00:00 - 23:59", "saturday": "00:00 - 23:59", "sunday": "00:00 - 23:59" },
+    "services": [
+      "air",
+      "washroom",
+      "card_payment"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
     "queue_level": "low",
     "updated_at": "2024-04-10T14:30:00Z"
   },
@@ -236,8 +387,8 @@
     "city": "Mumbai",
     "state": "Maharashtra",
     "pincode": "400066",
-    "latitude": 19.2220,
-    "longitude": 72.8640,
+    "latitude": 19.222,
+    "longitude": 72.864,
     "petrol_available": false,
     "diesel_available": false,
     "cctv_available": true,
@@ -252,10 +403,22 @@
     "phone": "022-26123456",
     "verified": true,
     "fuels": [
-      { "type": "CNG", "price": 86.00, "status": "AVAILABLE", "stockPercent": 50 }
+      {
+        "type": "CNG",
+        "price": 86,
+        "status": "AVAILABLE",
+        "stockPercent": 50
+      }
     ],
-    "services": ["washroom", "cctv"],
-    "timings": { "weekdays": "00:00 - 23:59", "saturday": "00:00 - 23:59", "sunday": "00:00 - 23:59" },
+    "services": [
+      "washroom",
+      "cctv"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
     "queue_level": "high",
     "updated_at": "2024-04-10T15:00:00Z"
   },
@@ -269,7 +432,7 @@
     "state": "Maharashtra",
     "pincode": "400103",
     "latitude": 19.2485,
-    "longitude": 72.8450,
+    "longitude": 72.845,
     "petrol_available": true,
     "diesel_available": true,
     "cng_available": false,
@@ -283,11 +446,30 @@
     "phone": "022-28956712",
     "verified": true,
     "fuels": [
-      { "type": "PETROL", "price": 106.19, "status": "AVAILABLE", "stockPercent": 75 },
-      { "type": "DIESEL", "price": 94.15, "status": "AVAILABLE", "stockPercent": 65 }
+      {
+        "type": "PETROL",
+        "price": 106.19,
+        "status": "AVAILABLE",
+        "stockPercent": 75
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.15,
+        "status": "AVAILABLE",
+        "stockPercent": 65
+      }
     ],
-    "services": ["air", "washroom", "card_payment", "food"],
-    "timings": { "weekdays": "06:00 - 23:00", "saturday": "06:00 - 23:00", "sunday": "06:00 - 22:30" },
+    "services": [
+      "air",
+      "washroom",
+      "card_payment",
+      "food"
+    ],
+    "timings": {
+      "weekdays": "06:00 - 23:00",
+      "saturday": "06:00 - 23:00",
+      "sunday": "06:00 - 22:30"
+    },
     "queue_level": "low",
     "updated_at": "2024-04-10T15:30:00Z"
   },
@@ -301,7 +483,7 @@
     "state": "Maharashtra",
     "pincode": "400068",
     "latitude": 19.2405,
-    "longitude": 72.8610,
+    "longitude": 72.861,
     "petrol_available": true,
     "diesel_available": true,
     "cng_available": true,
@@ -315,12 +497,35 @@
     "phone": "022-28481100",
     "verified": true,
     "fuels": [
-      { "type": "PETROL", "price": 106.31, "status": "AVAILABLE", "stockPercent": 50 },
-      { "type": "DIESEL", "price": 94.27, "status": "AVAILABLE", "stockPercent": 40 },
-      { "type": "CNG", "price": 86.00, "status": "AVAILABLE", "stockPercent": 35 }
+      {
+        "type": "PETROL",
+        "price": 106.31,
+        "status": "AVAILABLE",
+        "stockPercent": 50
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.27,
+        "status": "AVAILABLE",
+        "stockPercent": 40
+      },
+      {
+        "type": "CNG",
+        "price": 86,
+        "status": "AVAILABLE",
+        "stockPercent": 35
+      }
     ],
-    "services": ["air", "card_payment", "atm"],
-    "timings": { "weekdays": "00:00 - 23:59", "saturday": "00:00 - 23:59", "sunday": "00:00 - 23:59" },
+    "services": [
+      "air",
+      "card_payment",
+      "atm"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
     "queue_level": "medium",
     "updated_at": "2024-04-10T16:00:00Z"
   },
@@ -346,12 +551,35 @@
     "trustScore": 87,
     "dataFreshness": "RECENT",
     "fuels": [
-      { "type": "PETROL", "price": 106.31, "status": "AVAILABLE", "stockPercent": 60 },
-      { "type": "DIESEL", "price": 94.27, "status": "AVAILABLE", "stockPercent": 50 },
-      { "type": "EV", "price": 12.00, "status": "AVAILABLE", "stockPercent": 100 }
+      {
+        "type": "PETROL",
+        "price": 106.31,
+        "status": "AVAILABLE",
+        "stockPercent": 60
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.27,
+        "status": "AVAILABLE",
+        "stockPercent": 50
+      },
+      {
+        "type": "EV",
+        "price": 12,
+        "status": "AVAILABLE",
+        "stockPercent": 100
+      }
     ],
-    "services": ["air", "washroom", "ev_charging"],
-    "timings": { "weekdays": "00:00 - 23:59", "saturday": "00:00 - 23:59", "sunday": "00:00 - 23:59" },
+    "services": [
+      "air",
+      "washroom",
+      "ev_charging"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
     "queue_level": "high",
     "updated_at": "2024-04-09T09:00:00Z"
   },
@@ -365,7 +593,7 @@
     "state": "Maharashtra",
     "pincode": "400064",
     "latitude": 19.1834,
-    "longitude": 72.8340,
+    "longitude": 72.834,
     "petrol_available": true,
     "diesel_available": true,
     "cng_available": false,
@@ -377,12 +605,37 @@
     "trustScore": 95,
     "dataFreshness": "LIVE",
     "fuels": [
-      { "type": "PETROL", "price": 105.80, "status": "AVAILABLE", "stockPercent": 95 },
-      { "type": "DIESEL", "price": 93.50, "status": "AVAILABLE", "stockPercent": 90 },
-      { "type": "EV", "price": 14.00, "status": "AVAILABLE", "stockPercent": 100 }
+      {
+        "type": "PETROL",
+        "price": 105.8,
+        "status": "AVAILABLE",
+        "stockPercent": 95
+      },
+      {
+        "type": "DIESEL",
+        "price": 93.5,
+        "status": "AVAILABLE",
+        "stockPercent": 90
+      },
+      {
+        "type": "EV",
+        "price": 14,
+        "status": "AVAILABLE",
+        "stockPercent": 100
+      }
     ],
-    "services": ["air", "washroom", "card_payment", "food", "ev_charging"],
-    "timings": { "weekdays": "06:00 - 23:59", "saturday": "06:00 - 23:59", "sunday": "07:00 - 23:00" },
+    "services": [
+      "air",
+      "washroom",
+      "card_payment",
+      "food",
+      "ev_charging"
+    ],
+    "timings": {
+      "weekdays": "06:00 - 23:59",
+      "saturday": "06:00 - 23:59",
+      "sunday": "07:00 - 23:00"
+    },
     "queue_level": "low",
     "updated_at": "2024-04-09T07:45:00Z"
   },
@@ -408,12 +661,37 @@
     "trustScore": 89,
     "dataFreshness": "RECENT",
     "fuels": [
-      { "type": "PETROL", "price": 106.31, "status": "AVAILABLE", "stockPercent": 50 },
-      { "type": "DIESEL", "price": 94.27, "status": "AVAILABLE", "stockPercent": 40 },
-      { "type": "CNG", "price": 86.00, "status": "AVAILABLE", "stockPercent": 30 }
+      {
+        "type": "PETROL",
+        "price": 106.31,
+        "status": "AVAILABLE",
+        "stockPercent": 50
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.27,
+        "status": "AVAILABLE",
+        "stockPercent": 40
+      },
+      {
+        "type": "CNG",
+        "price": 86,
+        "status": "AVAILABLE",
+        "stockPercent": 30
+      }
     ],
-    "services": ["air", "washroom", "card_payment", "food", "atm"],
-    "timings": { "weekdays": "00:00 - 23:59", "saturday": "00:00 - 23:59", "sunday": "00:00 - 23:59" },
+    "services": [
+      "air",
+      "washroom",
+      "card_payment",
+      "food",
+      "atm"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
     "queue_level": "high",
     "updated_at": "2024-04-09T08:30:00Z"
   },
@@ -426,8 +704,8 @@
     "city": "Mumbai",
     "state": "Maharashtra",
     "pincode": "400050",
-    "latitude": 19.0620,
-    "longitude": 72.8340,
+    "latitude": 19.062,
+    "longitude": 72.834,
     "petrol_available": true,
     "diesel_available": true,
     "cng_available": false,
@@ -439,12 +717,36 @@
     "trustScore": 91,
     "dataFreshness": "STALE",
     "fuels": [
-      { "type": "PETROL", "price": 106.19, "status": "OUT", "stockPercent": 0 },
-      { "type": "DIESEL", "price": 94.15, "status": "AVAILABLE", "stockPercent": 40 },
-      { "type": "EV", "price": 16.00, "status": "AVAILABLE", "stockPercent": 100 }
+      {
+        "type": "PETROL",
+        "price": 106.19,
+        "status": "OUT",
+        "stockPercent": 0
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.15,
+        "status": "AVAILABLE",
+        "stockPercent": 40
+      },
+      {
+        "type": "EV",
+        "price": 16,
+        "status": "AVAILABLE",
+        "stockPercent": 100
+      }
     ],
-    "services": ["air", "washroom", "food", "ev_charging"],
-    "timings": { "weekdays": "00:00 - 23:59", "saturday": "00:00 - 23:59", "sunday": "00:00 - 23:59" },
+    "services": [
+      "air",
+      "washroom",
+      "food",
+      "ev_charging"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
     "queue_level": "none",
     "updated_at": "2024-04-09T01:00:00Z"
   },
@@ -470,12 +772,35 @@
     "trustScore": 86,
     "dataFreshness": "RECENT",
     "fuels": [
-      { "type": "PETROL", "price": 106.31, "status": "AVAILABLE", "stockPercent": 60 },
-      { "type": "DIESEL", "price": 94.27, "status": "AVAILABLE", "stockPercent": 55 },
-      { "type": "CNG", "price": 86.00, "status": "AVAILABLE", "stockPercent": 45 }
+      {
+        "type": "PETROL",
+        "price": 106.31,
+        "status": "AVAILABLE",
+        "stockPercent": 60
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.27,
+        "status": "AVAILABLE",
+        "stockPercent": 55
+      },
+      {
+        "type": "CNG",
+        "price": 86,
+        "status": "AVAILABLE",
+        "stockPercent": 45
+      }
     ],
-    "services": ["air", "washroom", "card_payment"],
-    "timings": { "weekdays": "00:00 - 23:59", "saturday": "00:00 - 23:59", "sunday": "00:00 - 23:59" },
+    "services": [
+      "air",
+      "washroom",
+      "card_payment"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
     "queue_level": "medium",
     "updated_at": "2024-04-09T09:15:00Z"
   },
@@ -501,10 +826,22 @@
     "trustScore": 89,
     "dataFreshness": "LIVE",
     "fuels": [
-      { "type": "CNG", "price": 86.00, "status": "AVAILABLE", "stockPercent": 40 }
+      {
+        "type": "CNG",
+        "price": 86,
+        "status": "AVAILABLE",
+        "stockPercent": 40
+      }
     ],
-    "services": ["washroom", "cctv"],
-    "timings": { "weekdays": "00:00 - 23:59", "saturday": "00:00 - 23:59", "sunday": "00:00 - 23:59" },
+    "services": [
+      "washroom",
+      "cctv"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
     "queue_level": "high",
     "updated_at": "2024-04-09T08:50:00Z"
   },
@@ -530,13 +867,3036 @@
     "trustScore": 97,
     "dataFreshness": "LIVE",
     "fuels": [
-      { "type": "PETROL", "price": 112.50, "status": "AVAILABLE", "stockPercent": 95 },
-      { "type": "DIESEL", "price": 98.20, "status": "AVAILABLE", "stockPercent": 85 },
-      { "type": "EV", "price": 15.00, "status": "AVAILABLE", "stockPercent": 100 }
+      {
+        "type": "PETROL",
+        "price": 112.5,
+        "status": "AVAILABLE",
+        "stockPercent": 95
+      },
+      {
+        "type": "DIESEL",
+        "price": 98.2,
+        "status": "AVAILABLE",
+        "stockPercent": 85
+      },
+      {
+        "type": "EV",
+        "price": 15,
+        "status": "AVAILABLE",
+        "stockPercent": 100
+      }
     ],
-    "services": ["air", "washroom", "card_payment", "food", "ev_charging", "wifi"],
-    "timings": { "weekdays": "00:00 - 23:59", "saturday": "00:00 - 23:59", "sunday": "00:00 - 23:59" },
+    "services": [
+      "air",
+      "washroom",
+      "card_payment",
+      "food",
+      "ev_charging",
+      "wifi"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
     "queue_level": "low",
     "updated_at": "2024-04-09T07:20:00Z"
+  },
+  {
+    "id": "pump-pune-01",
+    "name": "Bharat Petroleum - Kothrud",
+    "brand": "BPCL",
+    "address": "Paud Road, near Jog High School, Kothrud",
+    "area": "Kothrud",
+    "city": "Pune",
+    "state": "Maharashtra",
+    "latitude": 18.5074,
+    "longitude": 73.8077,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": true,
+    "rating": 4.4,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 104.5
+      },
+      {
+        "type": "DIESEL",
+        "price": 92.2
+      }
+    ],
+    "queue_level": "medium"
+  },
+  {
+    "id": "pump-pune-02",
+    "name": "HP Petrol Pump - Hinjewadi IT Park",
+    "brand": "HPCL",
+    "address": "Phase 1, Hinjewadi",
+    "area": "Hinjewadi",
+    "city": "Pune",
+    "state": "Maharashtra",
+    "latitude": 18.5913,
+    "longitude": 73.7389,
+    "petrol_available": true,
+    "diesel_available": true,
+    "ev_charging_available": true,
+    "rating": 4.6,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 104.35
+      },
+      {
+        "type": "DIESEL",
+        "price": 92.15
+      }
+    ],
+    "queue_level": "high"
+  },
+  {
+    "id": "pump-pune-03",
+    "name": "Shell - Viman Nagar",
+    "brand": "SHELL",
+    "address": "New Airport Road, Viman Nagar",
+    "area": "Viman Nagar",
+    "city": "Pune",
+    "state": "Maharashtra",
+    "latitude": 18.5679,
+    "longitude": 73.9143,
+    "petrol_available": true,
+    "diesel_available": true,
+    "rating": 4.8,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 110.5
+      },
+      {
+        "type": "DIESEL",
+        "price": 96.2
+      }
+    ],
+    "queue_level": "low"
+  },
+  {
+    "id": "pump-lon-01",
+    "name": "BPCL Expressway Food Mall (Pune-bound)",
+    "brand": "BPCL",
+    "address": "Mumbai-Pune Expressway, Sajgaon",
+    "area": "Lonavala",
+    "city": "Lonavala",
+    "state": "Maharashtra",
+    "latitude": 18.7845,
+    "longitude": 73.3456,
+    "petrol_available": true,
+    "diesel_available": true,
+    "rating": 4.2,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 105.8
+      },
+      {
+        "type": "DIESEL",
+        "price": 93.4
+      }
+    ],
+    "queue_level": "high"
+  },
+  {
+    "id": "pump-lon-02",
+    "name": "HP Petrol Pump - Old Highway",
+    "brand": "HPCL",
+    "address": "Old Mumbai Pune Highway, Khandala",
+    "area": "Lonavala",
+    "city": "Lonavala",
+    "state": "Maharashtra",
+    "latitude": 18.7612,
+    "longitude": 73.3745,
+    "petrol_available": true,
+    "diesel_available": true,
+    "rating": 4.3,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 104.9
+      },
+      {
+        "type": "DIESEL",
+        "price": 92.8
+      }
+    ],
+    "queue_level": "medium"
+  },
+  {
+    "id": "pump-nas-01",
+    "name": "Indian Oil - Dwarka Circle",
+    "brand": "IOCL",
+    "address": "Dwarka Circle, Nashik",
+    "area": "Nashik City",
+    "city": "Nashik",
+    "state": "Maharashtra",
+    "latitude": 19.989,
+    "longitude": 73.7925,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": true,
+    "rating": 4.1,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 105.1
+      },
+      {
+        "type": "DIESEL",
+        "price": 93.1
+      }
+    ],
+    "queue_level": "medium"
+  },
+  {
+    "id": "pump-nag-01",
+    "name": "Indian Oil - Civil Lines",
+    "brand": "IOCL",
+    "address": "Civil Lines, Nagpur",
+    "area": "Civil Lines",
+    "city": "Nagpur",
+    "state": "Maharashtra",
+    "latitude": 21.1524,
+    "longitude": 79.0745,
+    "petrol_available": true,
+    "diesel_available": true,
+    "rating": 4.5,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 102.8
+      },
+      {
+        "type": "DIESEL",
+        "price": 91.5
+      }
+    ],
+    "queue_level": "low"
+  },
+  {
+    "id": "pump-kol-01",
+    "name": "Bharat Petroleum - NH4 Highway",
+    "brand": "BPCL",
+    "address": "Shiroli, NH4, Kolhapur",
+    "area": "Shiroli",
+    "city": "Kolhapur",
+    "state": "Maharashtra",
+    "latitude": 16.745,
+    "longitude": 74.275,
+    "petrol_available": true,
+    "diesel_available": true,
+    "rating": 4.3,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 103.9
+      },
+      {
+        "type": "DIESEL",
+        "price": 92.5
+      }
+    ],
+    "queue_level": "medium"
+  },
+  {
+    "id": "pump-aur-01",
+    "name": "HP Petrol Pump - CIDCO",
+    "brand": "HPCL",
+    "address": "Cidco Bus Stand Road",
+    "area": "CIDCO",
+    "city": "Aurangabad",
+    "state": "Maharashtra",
+    "latitude": 19.8824,
+    "longitude": 75.3621,
+    "petrol_available": true,
+    "rating": 4.2,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 106.5
+      }
+    ],
+    "queue_level": "medium"
+  },
+  {
+    "id": "pump-sol-01",
+    "name": "BPCL - Railway Station Road",
+    "brand": "BPCL",
+    "address": "Sidheshwar Peth, Solapur",
+    "area": "Solapur City",
+    "city": "Solapur",
+    "state": "Maharashtra",
+    "latitude": 17.6715,
+    "longitude": 75.9064,
+    "petrol_available": true,
+    "diesel_available": true,
+    "rating": 4,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 104.1
+      }
+    ],
+    "queue_level": "medium"
+  },
+  {
+    "id": "pump-tha-01",
+    "name": "Indian Oil - Majiwada Circle",
+    "brand": "IOCL",
+    "address": "Majiwada Circle, Thane West",
+    "area": "Thane West",
+    "city": "Thane",
+    "state": "Maharashtra",
+    "latitude": 19.2198,
+    "longitude": 72.9788,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": true,
+    "rating": 4.4,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 106.1
+      }
+    ],
+    "queue_level": "high"
+  },
+  {
+    "id": "pump-nm-01",
+    "name": "Reliance BP - Vashi",
+    "brand": "RELIANCE",
+    "address": "Sector 17, Vashi",
+    "area": "Vashi",
+    "city": "Navi Mumbai",
+    "state": "Maharashtra",
+    "latitude": 19.0722,
+    "longitude": 72.9981,
+    "petrol_available": true,
+    "diesel_available": true,
+    "rating": 4.7,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 105.8
+      }
+    ],
+    "queue_level": "medium"
+  },
+  {
+    "id": "pump-gen-0",
+    "name": "Rahil Auto Services",
+    "brand": "HPCL",
+    "address": "Rahil Auto Services, Virar, Mumbai",
+    "area": "Virar",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400018",
+    "latitude": 19.4589,
+    "longitude": 72.8203,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": true,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": false,
+    "rating": 4.4,
+    "totalReviews": 2140,
+    "trustScore": 81,
+    "dataFreshness": "LIVE",
+    "phone": "022-23473364",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 105.92,
+        "status": "AVAILABLE",
+        "stockPercent": 69
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.52,
+        "status": "AVAILABLE",
+        "stockPercent": 82
+      },
+      {
+        "type": "CNG",
+        "price": 86,
+        "status": "AVAILABLE",
+        "stockPercent": 67
+      }
+    ],
+    "services": [
+      "air",
+      "washroom"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "medium",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-1",
+    "name": "Bassein Petrol Supply Co.",
+    "brand": "BPCL",
+    "address": "Bassein Petrol Supply Co., Virar, Mumbai",
+    "area": "Virar",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400003",
+    "latitude": 19.416,
+    "longitude": 72.8124,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": false,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": true,
+    "rating": 3.8,
+    "totalReviews": 457,
+    "trustScore": 83,
+    "dataFreshness": "LIVE",
+    "phone": "022-27441860",
+    "verified": false,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 105.95,
+        "status": "AVAILABLE",
+        "stockPercent": 64
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.78,
+        "status": "AVAILABLE",
+        "stockPercent": 43
+      }
+    ],
+    "services": [
+      "air",
+      "washroom",
+      "card_payment"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "medium",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-2",
+    "name": "Suresh Automobiles",
+    "brand": "HPCL",
+    "address": "Suresh Automobiles, Virar, Mumbai",
+    "area": "Virar",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400087",
+    "latitude": 19.472,
+    "longitude": 72.835,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": false,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": true,
+    "rating": 3.9,
+    "totalReviews": 251,
+    "trustScore": 82,
+    "dataFreshness": "LIVE",
+    "phone": "022-29596618",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 106.09,
+        "status": "AVAILABLE",
+        "stockPercent": 79
+      },
+      {
+        "type": "DIESEL",
+        "price": 93.84,
+        "status": "AVAILABLE",
+        "stockPercent": 79
+      }
+    ],
+    "services": [
+      "air"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "medium",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-3",
+    "name": "Virar West Service Station",
+    "brand": "IOCL",
+    "address": "Virar West Service Station, Virar, Mumbai",
+    "area": "Virar",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400019",
+    "latitude": 19.445,
+    "longitude": 72.805,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": false,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": false,
+    "rating": 4.4,
+    "totalReviews": 1937,
+    "trustScore": 80,
+    "dataFreshness": "LIVE",
+    "phone": "022-21822503",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 107.03,
+        "status": "AVAILABLE",
+        "stockPercent": 97
+      },
+      {
+        "type": "DIESEL",
+        "price": 93.83,
+        "status": "AVAILABLE",
+        "stockPercent": 89
+      }
+    ],
+    "services": [
+      "air",
+      "washroom"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "high",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-4",
+    "name": "Agashi Road Fuel",
+    "brand": "BPCL",
+    "address": "Agashi Road Fuel, Virar, Mumbai",
+    "area": "Virar",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400097",
+    "latitude": 19.432,
+    "longitude": 72.798,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": false,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": false,
+    "rating": 4.3,
+    "totalReviews": 1270,
+    "trustScore": 94,
+    "dataFreshness": "LIVE",
+    "phone": "022-22608761",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 106.13,
+        "status": "AVAILABLE",
+        "stockPercent": 78
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.5,
+        "status": "AVAILABLE",
+        "stockPercent": 89
+      }
+    ],
+    "services": [
+      "air"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "high",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-5",
+    "name": "Virar Highway Point",
+    "brand": "IOCL",
+    "address": "Virar Highway Point, Virar, Mumbai",
+    "area": "Virar",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400046",
+    "latitude": 19.465,
+    "longitude": 72.828,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": false,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": false,
+    "rating": 4,
+    "totalReviews": 724,
+    "trustScore": 81,
+    "dataFreshness": "LIVE",
+    "phone": "022-29915399",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 106.21,
+        "status": "AVAILABLE",
+        "stockPercent": 81
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.93,
+        "status": "AVAILABLE",
+        "stockPercent": 50
+      }
+    ],
+    "services": [
+      "card_payment",
+      "food"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "low",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-6",
+    "name": "Ambika Automobiles",
+    "brand": "IOCL",
+    "address": "Ambika Automobiles, Vasai, Mumbai",
+    "area": "Vasai",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400095",
+    "latitude": 19.3919,
+    "longitude": 72.8397,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": false,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": false,
+    "rating": 3.9,
+    "totalReviews": 621,
+    "trustScore": 88,
+    "dataFreshness": "LIVE",
+    "phone": "022-25283120",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 106,
+        "status": "AVAILABLE",
+        "stockPercent": 55
+      },
+      {
+        "type": "DIESEL",
+        "price": 93.56,
+        "status": "AVAILABLE",
+        "stockPercent": 45
+      }
+    ],
+    "services": [
+      "air",
+      "washroom",
+      "food"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "medium",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-7",
+    "name": "Shree Chandika Petroleum",
+    "brand": "IOCL",
+    "address": "Shree Chandika Petroleum, Vasai, Mumbai",
+    "area": "Vasai",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400032",
+    "latitude": 19.375,
+    "longitude": 72.845,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": false,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": true,
+    "rating": 4.7,
+    "totalReviews": 1713,
+    "trustScore": 80,
+    "dataFreshness": "LIVE",
+    "phone": "022-28656126",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 107.11,
+        "status": "AVAILABLE",
+        "stockPercent": 50
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.79,
+        "status": "AVAILABLE",
+        "stockPercent": 48
+      }
+    ],
+    "services": [
+      "air",
+      "washroom"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "high",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-8",
+    "name": "Tunga Petroleum",
+    "brand": "HPCL",
+    "address": "Tunga Petroleum, Vasai, Mumbai",
+    "area": "Vasai",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400008",
+    "latitude": 19.385,
+    "longitude": 72.825,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": true,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": true,
+    "rating": 4,
+    "totalReviews": 521,
+    "trustScore": 87,
+    "dataFreshness": "LIVE",
+    "phone": "022-25468949",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 105.86,
+        "status": "AVAILABLE",
+        "stockPercent": 73
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.42,
+        "status": "AVAILABLE",
+        "stockPercent": 98
+      },
+      {
+        "type": "CNG",
+        "price": 86,
+        "status": "AVAILABLE",
+        "stockPercent": 45
+      }
+    ],
+    "services": [
+      "air",
+      "card_payment"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "medium",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-9",
+    "name": "Vasai East Fuel Center",
+    "brand": "BPCL",
+    "address": "Vasai East Fuel Center, Vasai, Mumbai",
+    "area": "Vasai",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400058",
+    "latitude": 19.365,
+    "longitude": 72.855,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": false,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": false,
+    "rating": 4.8,
+    "totalReviews": 2025,
+    "trustScore": 87,
+    "dataFreshness": "LIVE",
+    "phone": "022-26963836",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 107.01,
+        "status": "AVAILABLE",
+        "stockPercent": 61
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.04,
+        "status": "AVAILABLE",
+        "stockPercent": 88
+      }
+    ],
+    "services": [
+      "air",
+      "washroom"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "medium",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-10",
+    "name": "Sativali Highway Pump",
+    "brand": "IOCL",
+    "address": "Sativali Highway Pump, Vasai, Mumbai",
+    "area": "Vasai",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400026",
+    "latitude": 19.405,
+    "longitude": 72.865,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": false,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": true,
+    "rating": 3.8,
+    "totalReviews": 1913,
+    "trustScore": 87,
+    "dataFreshness": "LIVE",
+    "phone": "022-23168603",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 107.48,
+        "status": "AVAILABLE",
+        "stockPercent": 89
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.34,
+        "status": "AVAILABLE",
+        "stockPercent": 61
+      }
+    ],
+    "services": [
+      "food",
+      "card_payment"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "high",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-11",
+    "name": "Vasai Link Road Station",
+    "brand": "HPCL",
+    "address": "Vasai Link Road Station, Vasai, Mumbai",
+    "area": "Vasai",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400053",
+    "latitude": 19.372,
+    "longitude": 72.815,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": false,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": false,
+    "rating": 3.8,
+    "totalReviews": 1284,
+    "trustScore": 82,
+    "dataFreshness": "LIVE",
+    "phone": "022-27380861",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 106.35,
+        "status": "AVAILABLE",
+        "stockPercent": 42
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.22,
+        "status": "AVAILABLE",
+        "stockPercent": 79
+      }
+    ],
+    "services": [
+      "air"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "medium",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-12",
+    "name": "Sri Swastik Agencies",
+    "brand": "HPCL",
+    "address": "Sri Swastik Agencies, Nalasopara, Mumbai",
+    "area": "Nalasopara",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400046",
+    "latitude": 19.4167,
+    "longitude": 72.8333,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": false,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": false,
+    "rating": 4,
+    "totalReviews": 308,
+    "trustScore": 83,
+    "dataFreshness": "LIVE",
+    "phone": "022-25898921",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 107.15,
+        "status": "AVAILABLE",
+        "stockPercent": 58
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.73,
+        "status": "AVAILABLE",
+        "stockPercent": 54
+      }
+    ],
+    "services": [
+      "air",
+      "washroom"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "low",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-13",
+    "name": "Prabhat Petroleum",
+    "brand": "IOCL",
+    "address": "Prabhat Petroleum, Nalasopara, Mumbai",
+    "area": "Nalasopara",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400045",
+    "latitude": 19.425,
+    "longitude": 72.845,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": true,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": false,
+    "rating": 4.6,
+    "totalReviews": 850,
+    "trustScore": 95,
+    "dataFreshness": "LIVE",
+    "phone": "022-21408562",
+    "verified": false,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 106.43,
+        "status": "AVAILABLE",
+        "stockPercent": 43
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.83,
+        "status": "AVAILABLE",
+        "stockPercent": 42
+      },
+      {
+        "type": "CNG",
+        "price": 86,
+        "status": "AVAILABLE",
+        "stockPercent": 78
+      }
+    ],
+    "services": [
+      "air",
+      "card_payment"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "medium",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-14",
+    "name": "Nalasopara West Auto",
+    "brand": "BPCL",
+    "address": "Nalasopara West Auto, Nalasopara, Mumbai",
+    "area": "Nalasopara",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400075",
+    "latitude": 19.408,
+    "longitude": 72.818,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": false,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": false,
+    "rating": 4.2,
+    "totalReviews": 1478,
+    "trustScore": 94,
+    "dataFreshness": "LIVE",
+    "phone": "022-23440902",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 106.02,
+        "status": "AVAILABLE",
+        "stockPercent": 61
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.56,
+        "status": "AVAILABLE",
+        "stockPercent": 96
+      }
+    ],
+    "services": [
+      "washroom"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "medium",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-15",
+    "name": "Sopara Highway Point",
+    "brand": "IOCL",
+    "address": "Sopara Highway Point, Nalasopara, Mumbai",
+    "area": "Nalasopara",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400022",
+    "latitude": 19.435,
+    "longitude": 72.855,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": true,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": true,
+    "rating": 3.9,
+    "totalReviews": 1807,
+    "trustScore": 94,
+    "dataFreshness": "LIVE",
+    "phone": "022-26357853",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 105.72,
+        "status": "AVAILABLE",
+        "stockPercent": 40
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.57,
+        "status": "AVAILABLE",
+        "stockPercent": 81
+      },
+      {
+        "type": "CNG",
+        "price": 86,
+        "status": "AVAILABLE",
+        "stockPercent": 43
+      }
+    ],
+    "services": [
+      "card_payment",
+      "food"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "medium",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-16",
+    "name": "Achole Road Fuel",
+    "brand": "HPCL",
+    "address": "Achole Road Fuel, Nalasopara, Mumbai",
+    "area": "Nalasopara",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400086",
+    "latitude": 19.412,
+    "longitude": 72.852,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": false,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": true,
+    "rating": 3.9,
+    "totalReviews": 1908,
+    "trustScore": 95,
+    "dataFreshness": "LIVE",
+    "phone": "022-23831714",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 107.16,
+        "status": "AVAILABLE",
+        "stockPercent": 71
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.47,
+        "status": "AVAILABLE",
+        "stockPercent": 72
+      }
+    ],
+    "services": [
+      "air"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "high",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-17",
+    "name": "Nala Fuel Station",
+    "brand": "SHELL",
+    "address": "Nala Fuel Station, Nalasopara, Mumbai",
+    "area": "Nalasopara",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400038",
+    "latitude": 19.422,
+    "longitude": 72.822,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": true,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": false,
+    "rating": 3.8,
+    "totalReviews": 1377,
+    "trustScore": 96,
+    "dataFreshness": "LIVE",
+    "phone": "022-24315966",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 107.04,
+        "status": "AVAILABLE",
+        "stockPercent": 43
+      },
+      {
+        "type": "DIESEL",
+        "price": 93.21,
+        "status": "AVAILABLE",
+        "stockPercent": 82
+      },
+      {
+        "type": "CNG",
+        "price": 86,
+        "status": "AVAILABLE",
+        "stockPercent": 75
+      }
+    ],
+    "services": [
+      "air",
+      "washroom",
+      "wifi"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "medium",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-18",
+    "name": "Unique Filling Point",
+    "brand": "IOCL",
+    "address": "Unique Filling Point, Mira Road, Mumbai",
+    "area": "Mira Road",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400016",
+    "latitude": 19.2817,
+    "longitude": 72.8558,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": false,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": true,
+    "rating": 4.4,
+    "totalReviews": 2040,
+    "trustScore": 97,
+    "dataFreshness": "LIVE",
+    "phone": "022-29526144",
+    "verified": false,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 106.51,
+        "status": "AVAILABLE",
+        "stockPercent": 40
+      },
+      {
+        "type": "DIESEL",
+        "price": 93.1,
+        "status": "AVAILABLE",
+        "stockPercent": 83
+      }
+    ],
+    "services": [
+      "air",
+      "washroom",
+      "food"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "high",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-19",
+    "name": "Velkar Auto",
+    "brand": "IOCL",
+    "address": "Velkar Auto, Mira Road, Mumbai",
+    "area": "Mira Road",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400052",
+    "latitude": 19.295,
+    "longitude": 72.865,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": true,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": true,
+    "rating": 4.7,
+    "totalReviews": 359,
+    "trustScore": 80,
+    "dataFreshness": "LIVE",
+    "phone": "022-28837120",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 106.34,
+        "status": "AVAILABLE",
+        "stockPercent": 88
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.55,
+        "status": "AVAILABLE",
+        "stockPercent": 79
+      },
+      {
+        "type": "CNG",
+        "price": 86,
+        "status": "AVAILABLE",
+        "stockPercent": 56
+      }
+    ],
+    "services": [
+      "air",
+      "washroom"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "high",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-20",
+    "name": "Kashimira Highway Pump",
+    "brand": "BPCL",
+    "address": "Kashimira Highway Pump, Mira Road, Mumbai",
+    "area": "Mira Road",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400052",
+    "latitude": 19.272,
+    "longitude": 72.868,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": true,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": true,
+    "rating": 4.3,
+    "totalReviews": 1253,
+    "trustScore": 98,
+    "dataFreshness": "LIVE",
+    "phone": "022-24141622",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 106.73,
+        "status": "AVAILABLE",
+        "stockPercent": 53
+      },
+      {
+        "type": "DIESEL",
+        "price": 93.71,
+        "status": "AVAILABLE",
+        "stockPercent": 47
+      },
+      {
+        "type": "CNG",
+        "price": 86,
+        "status": "AVAILABLE",
+        "stockPercent": 31
+      }
+    ],
+    "services": [
+      "air",
+      "card_payment",
+      "food"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "high",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-21",
+    "name": "Mira Road West Fuel",
+    "brand": "HPCL",
+    "address": "Mira Road West Fuel, Mira Road, Mumbai",
+    "area": "Mira Road",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400077",
+    "latitude": 19.285,
+    "longitude": 72.842,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": false,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": true,
+    "rating": 4.7,
+    "totalReviews": 2047,
+    "trustScore": 88,
+    "dataFreshness": "LIVE",
+    "phone": "022-25110612",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 105.62,
+        "status": "AVAILABLE",
+        "stockPercent": 75
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.36,
+        "status": "AVAILABLE",
+        "stockPercent": 70
+      }
+    ],
+    "services": [
+      "air",
+      "washroom"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "medium",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-22",
+    "name": "Sheetal Nagar Station",
+    "brand": "IOCL",
+    "address": "Sheetal Nagar Station, Mira Road, Mumbai",
+    "area": "Mira Road",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400006",
+    "latitude": 19.288,
+    "longitude": 72.848,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": false,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": true,
+    "rating": 4.3,
+    "totalReviews": 787,
+    "trustScore": 87,
+    "dataFreshness": "LIVE",
+    "phone": "022-24694592",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 106.64,
+        "status": "AVAILABLE",
+        "stockPercent": 97
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.37,
+        "status": "AVAILABLE",
+        "stockPercent": 78
+      }
+    ],
+    "services": [
+      "card_payment"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "low",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-23",
+    "name": "Mira Road Station Road",
+    "brand": "BPCL",
+    "address": "Mira Road Station Road, Mira Road, Mumbai",
+    "area": "Mira Road",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400040",
+    "latitude": 19.278,
+    "longitude": 72.852,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": false,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": false,
+    "rating": 4.7,
+    "totalReviews": 570,
+    "trustScore": 88,
+    "dataFreshness": "LIVE",
+    "phone": "022-27530934",
+    "verified": false,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 105.68,
+        "status": "AVAILABLE",
+        "stockPercent": 88
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.59,
+        "status": "AVAILABLE",
+        "stockPercent": 83
+      }
+    ],
+    "services": [
+      "air"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "medium",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-24",
+    "name": "Kanakiya Road Fuel",
+    "brand": "SHELL",
+    "address": "Kanakiya Road Fuel, Mira Road, Mumbai",
+    "area": "Mira Road",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400019",
+    "latitude": 19.292,
+    "longitude": 72.858,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": false,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": false,
+    "rating": 3.9,
+    "totalReviews": 1311,
+    "trustScore": 81,
+    "dataFreshness": "LIVE",
+    "phone": "022-29318274",
+    "verified": false,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 106.96,
+        "status": "AVAILABLE",
+        "stockPercent": 57
+      },
+      {
+        "type": "DIESEL",
+        "price": 93.44,
+        "status": "AVAILABLE",
+        "stockPercent": 77
+      }
+    ],
+    "services": [
+      "air",
+      "washroom",
+      "wifi",
+      "food"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "low",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-25",
+    "name": "Mira Bhayander Link",
+    "brand": "NAYARA",
+    "address": "Mira Bhayander Link, Mira Road, Mumbai",
+    "area": "Mira Road",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400052",
+    "latitude": 19.302,
+    "longitude": 72.845,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": false,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": true,
+    "rating": 4.7,
+    "totalReviews": 440,
+    "trustScore": 86,
+    "dataFreshness": "LIVE",
+    "phone": "022-23448470",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 106.45,
+        "status": "AVAILABLE",
+        "stockPercent": 86
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.7,
+        "status": "AVAILABLE",
+        "stockPercent": 75
+      }
+    ],
+    "services": [
+      "air",
+      "washroom"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "medium",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-26",
+    "name": "Satyashanti Auto Service",
+    "brand": "IOCL",
+    "address": "Satyashanti Auto Service, Dahisar, Mumbai",
+    "area": "Dahisar",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400096",
+    "latitude": 19.2488,
+    "longitude": 72.8598,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": false,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": true,
+    "rating": 3.9,
+    "totalReviews": 1208,
+    "trustScore": 92,
+    "dataFreshness": "LIVE",
+    "phone": "022-23682792",
+    "verified": false,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 106.67,
+        "status": "AVAILABLE",
+        "stockPercent": 78
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.9,
+        "status": "AVAILABLE",
+        "stockPercent": 91
+      }
+    ],
+    "services": [
+      "air",
+      "washroom"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "high",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-27",
+    "name": "Dahisar Check Naka BP",
+    "brand": "BPCL",
+    "address": "Dahisar Check Naka BP, Dahisar, Mumbai",
+    "area": "Dahisar",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400064",
+    "latitude": 19.2595,
+    "longitude": 72.868,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": true,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": false,
+    "rating": 4.7,
+    "totalReviews": 1363,
+    "trustScore": 86,
+    "dataFreshness": "LIVE",
+    "phone": "022-29072774",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 106.6,
+        "status": "AVAILABLE",
+        "stockPercent": 77
+      },
+      {
+        "type": "DIESEL",
+        "price": 93.65,
+        "status": "AVAILABLE",
+        "stockPercent": 52
+      },
+      {
+        "type": "CNG",
+        "price": 86,
+        "status": "AVAILABLE",
+        "stockPercent": 51
+      }
+    ],
+    "services": [
+      "air",
+      "washroom",
+      "food"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "high",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-28",
+    "name": "Kandarpada HP",
+    "brand": "HPCL",
+    "address": "Kandarpada HP, Dahisar, Mumbai",
+    "area": "Dahisar",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400049",
+    "latitude": 19.255,
+    "longitude": 72.845,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": true,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": false,
+    "rating": 4.1,
+    "totalReviews": 905,
+    "trustScore": 82,
+    "dataFreshness": "LIVE",
+    "phone": "022-29436841",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 107.25,
+        "status": "AVAILABLE",
+        "stockPercent": 78
+      },
+      {
+        "type": "DIESEL",
+        "price": 93.14,
+        "status": "AVAILABLE",
+        "stockPercent": 98
+      },
+      {
+        "type": "CNG",
+        "price": 86,
+        "status": "AVAILABLE",
+        "stockPercent": 47
+      }
+    ],
+    "services": [
+      "air",
+      "card_payment"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "medium",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-29",
+    "name": "Dahisar East Highway",
+    "brand": "IOCL",
+    "address": "Dahisar East Highway, Dahisar, Mumbai",
+    "area": "Dahisar",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400077",
+    "latitude": 19.242,
+    "longitude": 72.862,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": true,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": false,
+    "rating": 4.2,
+    "totalReviews": 409,
+    "trustScore": 93,
+    "dataFreshness": "LIVE",
+    "phone": "022-27981212",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 107.31,
+        "status": "AVAILABLE",
+        "stockPercent": 91
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.69,
+        "status": "AVAILABLE",
+        "stockPercent": 51
+      },
+      {
+        "type": "CNG",
+        "price": 86,
+        "status": "AVAILABLE",
+        "stockPercent": 78
+      }
+    ],
+    "services": [
+      "air",
+      "washroom"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "medium",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-30",
+    "name": "Sudhir Automobiles",
+    "brand": "HPCL",
+    "address": "Sudhir Automobiles, Dahisar, Mumbai",
+    "area": "Dahisar",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400094",
+    "latitude": 19.232,
+    "longitude": 72.855,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": true,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": false,
+    "rating": 3.8,
+    "totalReviews": 1693,
+    "trustScore": 95,
+    "dataFreshness": "LIVE",
+    "phone": "022-24480045",
+    "verified": false,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 105.93,
+        "status": "AVAILABLE",
+        "stockPercent": 99
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.72,
+        "status": "AVAILABLE",
+        "stockPercent": 41
+      },
+      {
+        "type": "CNG",
+        "price": 86,
+        "status": "AVAILABLE",
+        "stockPercent": 69
+      }
+    ],
+    "services": [
+      "air",
+      "card_payment"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "high",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-31",
+    "name": "Dahisar Link Point",
+    "brand": "BPCL",
+    "address": "Dahisar Link Point, Dahisar, Mumbai",
+    "area": "Dahisar",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400082",
+    "latitude": 19.252,
+    "longitude": 72.838,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": true,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": true,
+    "rating": 4.6,
+    "totalReviews": 1971,
+    "trustScore": 88,
+    "dataFreshness": "LIVE",
+    "phone": "022-21269698",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 107.47,
+        "status": "AVAILABLE",
+        "stockPercent": 94
+      },
+      {
+        "type": "DIESEL",
+        "price": 93.42,
+        "status": "AVAILABLE",
+        "stockPercent": 92
+      },
+      {
+        "type": "CNG",
+        "price": 86,
+        "status": "AVAILABLE",
+        "stockPercent": 58
+      }
+    ],
+    "services": [
+      "air"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "medium",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-32",
+    "name": "Borivali West Shell",
+    "brand": "SHELL",
+    "address": "Borivali West Shell, Borivali, Mumbai",
+    "area": "Borivali",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400027",
+    "latitude": 19.236,
+    "longitude": 72.834,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": false,
+    "ev_charging_available": true,
+    "open_now": true,
+    "open24Hours": true,
+    "rating": 4.4,
+    "totalReviews": 460,
+    "trustScore": 93,
+    "dataFreshness": "LIVE",
+    "phone": "022-21789763",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 106.19,
+        "status": "AVAILABLE",
+        "stockPercent": 98
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.82,
+        "status": "AVAILABLE",
+        "stockPercent": 61
+      },
+      {
+        "type": "EV",
+        "price": 15.871611360117228,
+        "status": "AVAILABLE",
+        "stockPercent": 100
+      }
+    ],
+    "services": [
+      "air",
+      "washroom",
+      "wifi",
+      "food",
+      "ev_charging"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "low",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-33",
+    "name": "Gorai Road Reliance",
+    "brand": "RELIANCE",
+    "address": "Gorai Road Reliance, Borivali, Mumbai",
+    "area": "Borivali",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400040",
+    "latitude": 19.2315,
+    "longitude": 72.818,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": false,
+    "ev_charging_available": true,
+    "open_now": true,
+    "open24Hours": true,
+    "rating": 4.2,
+    "totalReviews": 1647,
+    "trustScore": 85,
+    "dataFreshness": "LIVE",
+    "phone": "022-28375805",
+    "verified": false,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 107.2,
+        "status": "AVAILABLE",
+        "stockPercent": 53
+      },
+      {
+        "type": "DIESEL",
+        "price": 93.37,
+        "status": "AVAILABLE",
+        "stockPercent": 77
+      },
+      {
+        "type": "EV",
+        "price": 15.05486825334133,
+        "status": "AVAILABLE",
+        "stockPercent": 100
+      }
+    ],
+    "services": [
+      "air",
+      "washroom",
+      "ev_charging"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "high",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-34",
+    "name": "IC Colony HP",
+    "brand": "HPCL",
+    "address": "IC Colony HP, Borivali, Mumbai",
+    "area": "Borivali",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400002",
+    "latitude": 19.2485,
+    "longitude": 72.845,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": false,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": true,
+    "rating": 4,
+    "totalReviews": 1853,
+    "trustScore": 87,
+    "dataFreshness": "LIVE",
+    "phone": "022-21203545",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 107.34,
+        "status": "AVAILABLE",
+        "stockPercent": 79
+      },
+      {
+        "type": "DIESEL",
+        "price": 93.1,
+        "status": "AVAILABLE",
+        "stockPercent": 98
+      }
+    ],
+    "services": [
+      "air",
+      "washroom",
+      "food"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "low",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-35",
+    "name": "Borivali East WEH",
+    "brand": "BPCL",
+    "address": "Borivali East WEH, Borivali, Mumbai",
+    "area": "Borivali",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400084",
+    "latitude": 19.225,
+    "longitude": 72.862,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": true,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": true,
+    "rating": 4.8,
+    "totalReviews": 1492,
+    "trustScore": 83,
+    "dataFreshness": "LIVE",
+    "phone": "022-28184127",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 107.08,
+        "status": "AVAILABLE",
+        "stockPercent": 41
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.16,
+        "status": "AVAILABLE",
+        "stockPercent": 49
+      },
+      {
+        "type": "CNG",
+        "price": 86,
+        "status": "AVAILABLE",
+        "stockPercent": 65
+      }
+    ],
+    "services": [
+      "air",
+      "washroom",
+      "card_payment"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "medium",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-36",
+    "name": "Shimpoli Fuel Store",
+    "brand": "IOCL",
+    "address": "Shimpoli Fuel Store, Borivali, Mumbai",
+    "area": "Borivali",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400040",
+    "latitude": 19.228,
+    "longitude": 72.842,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": false,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": true,
+    "rating": 4.6,
+    "totalReviews": 996,
+    "trustScore": 96,
+    "dataFreshness": "LIVE",
+    "phone": "022-23488253",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 105.82,
+        "status": "AVAILABLE",
+        "stockPercent": 41
+      },
+      {
+        "type": "DIESEL",
+        "price": 93.6,
+        "status": "AVAILABLE",
+        "stockPercent": 48
+      }
+    ],
+    "services": [
+      "air",
+      "card_payment"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "high",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-37",
+    "name": "Borivali Station Point",
+    "brand": "HPCL",
+    "address": "Borivali Station Point, Borivali, Mumbai",
+    "area": "Borivali",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400058",
+    "latitude": 19.232,
+    "longitude": 72.852,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": false,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": true,
+    "rating": 4.8,
+    "totalReviews": 1599,
+    "trustScore": 97,
+    "dataFreshness": "LIVE",
+    "phone": "022-23662880",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 107.03,
+        "status": "AVAILABLE",
+        "stockPercent": 99
+      },
+      {
+        "type": "DIESEL",
+        "price": 93.16,
+        "status": "AVAILABLE",
+        "stockPercent": 75
+      }
+    ],
+    "services": [
+      "air",
+      "washroom"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "low",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-38",
+    "name": "Yogi Nagar Fuel",
+    "brand": "BPCL",
+    "address": "Yogi Nagar Fuel, Borivali, Mumbai",
+    "area": "Borivali",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400058",
+    "latitude": 19.242,
+    "longitude": 72.835,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": false,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": true,
+    "rating": 3.9,
+    "totalReviews": 2117,
+    "trustScore": 96,
+    "dataFreshness": "LIVE",
+    "phone": "022-21562672",
+    "verified": false,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 107.16,
+        "status": "AVAILABLE",
+        "stockPercent": 75
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.83,
+        "status": "AVAILABLE",
+        "stockPercent": 45
+      }
+    ],
+    "services": [
+      "air"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "low",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-39",
+    "name": "Borivali Link Road",
+    "brand": "IOCL",
+    "address": "Borivali Link Road, Borivali, Mumbai",
+    "area": "Borivali",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400081",
+    "latitude": 19.222,
+    "longitude": 72.832,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": true,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": false,
+    "rating": 4.7,
+    "totalReviews": 1289,
+    "trustScore": 88,
+    "dataFreshness": "LIVE",
+    "phone": "022-22673212",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 107.36,
+        "status": "AVAILABLE",
+        "stockPercent": 64
+      },
+      {
+        "type": "DIESEL",
+        "price": 93.82,
+        "status": "AVAILABLE",
+        "stockPercent": 46
+      },
+      {
+        "type": "CNG",
+        "price": 86,
+        "status": "AVAILABLE",
+        "stockPercent": 64
+      }
+    ],
+    "services": [
+      "card_payment",
+      "food"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "low",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-40",
+    "name": "Kandivali East IOCL",
+    "brand": "IOCL",
+    "address": "Kandivali East IOCL, Kandivali, Mumbai",
+    "area": "Kandivali",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400094",
+    "latitude": 19.2045,
+    "longitude": 72.8643,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": true,
+    "ev_charging_available": true,
+    "open_now": true,
+    "open24Hours": true,
+    "rating": 4.7,
+    "totalReviews": 1365,
+    "trustScore": 82,
+    "dataFreshness": "LIVE",
+    "phone": "022-21219851",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 105.63,
+        "status": "AVAILABLE",
+        "stockPercent": 74
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.54,
+        "status": "AVAILABLE",
+        "stockPercent": 84
+      },
+      {
+        "type": "CNG",
+        "price": 86,
+        "status": "AVAILABLE",
+        "stockPercent": 52
+      },
+      {
+        "type": "EV",
+        "price": 12.67716623007046,
+        "status": "AVAILABLE",
+        "stockPercent": 100
+      }
+    ],
+    "services": [
+      "air",
+      "washroom",
+      "ev_charging"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "low",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-41",
+    "name": "Kandivali West HP",
+    "brand": "HPCL",
+    "address": "Kandivali West HP, Kandivali, Mumbai",
+    "area": "Kandivali",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400071",
+    "latitude": 19.208,
+    "longitude": 72.845,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": false,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": false,
+    "rating": 4.7,
+    "totalReviews": 2174,
+    "trustScore": 87,
+    "dataFreshness": "LIVE",
+    "phone": "022-25672795",
+    "verified": false,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 105.92,
+        "status": "AVAILABLE",
+        "stockPercent": 97
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.69,
+        "status": "AVAILABLE",
+        "stockPercent": 60
+      }
+    ],
+    "services": [
+      "air",
+      "washroom"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "low",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-42",
+    "name": "Charkop Link Fuel",
+    "brand": "BPCL",
+    "address": "Charkop Link Fuel, Kandivali, Mumbai",
+    "area": "Kandivali",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400025",
+    "latitude": 19.215,
+    "longitude": 72.832,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": true,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": false,
+    "rating": 4.1,
+    "totalReviews": 2140,
+    "trustScore": 97,
+    "dataFreshness": "LIVE",
+    "phone": "022-28345707",
+    "verified": false,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 106.94,
+        "status": "AVAILABLE",
+        "stockPercent": 87
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.81,
+        "status": "AVAILABLE",
+        "stockPercent": 49
+      },
+      {
+        "type": "CNG",
+        "price": 86,
+        "status": "AVAILABLE",
+        "stockPercent": 57
+      }
+    ],
+    "services": [
+      "air",
+      "card_payment"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "high",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-43",
+    "name": "MG Road Station",
+    "brand": "IOCL",
+    "address": "MG Road Station, Kandivali, Mumbai",
+    "area": "Kandivali",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400047",
+    "latitude": 19.202,
+    "longitude": 72.848,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": true,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": true,
+    "rating": 4,
+    "totalReviews": 357,
+    "trustScore": 87,
+    "dataFreshness": "LIVE",
+    "phone": "022-28408996",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 105.53,
+        "status": "AVAILABLE",
+        "stockPercent": 79
+      },
+      {
+        "type": "DIESEL",
+        "price": 93.33,
+        "status": "AVAILABLE",
+        "stockPercent": 65
+      },
+      {
+        "type": "CNG",
+        "price": 86,
+        "status": "AVAILABLE",
+        "stockPercent": 33
+      }
+    ],
+    "services": [
+      "air",
+      "washroom"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "high",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-44",
+    "name": "Mahavir Nagar Point",
+    "brand": "SHELL",
+    "address": "Mahavir Nagar Point, Kandivali, Mumbai",
+    "area": "Kandivali",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400073",
+    "latitude": 19.212,
+    "longitude": 72.842,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": false,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": true,
+    "rating": 4,
+    "totalReviews": 1913,
+    "trustScore": 83,
+    "dataFreshness": "LIVE",
+    "phone": "022-29882863",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 105.78,
+        "status": "AVAILABLE",
+        "stockPercent": 53
+      },
+      {
+        "type": "DIESEL",
+        "price": 93.62,
+        "status": "AVAILABLE",
+        "stockPercent": 69
+      }
+    ],
+    "services": [
+      "air",
+      "washroom",
+      "wifi",
+      "food"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "high",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-45",
+    "name": "Hindustan Fuel Kandivali",
+    "brand": "HPCL",
+    "address": "Hindustan Fuel Kandivali, Kandivali, Mumbai",
+    "area": "Kandivali",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400072",
+    "latitude": 19.198,
+    "longitude": 72.855,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": true,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": true,
+    "rating": 4.5,
+    "totalReviews": 1280,
+    "trustScore": 81,
+    "dataFreshness": "LIVE",
+    "phone": "022-22561592",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 106.09,
+        "status": "AVAILABLE",
+        "stockPercent": 81
+      },
+      {
+        "type": "DIESEL",
+        "price": 93.49,
+        "status": "AVAILABLE",
+        "stockPercent": 84
+      },
+      {
+        "type": "CNG",
+        "price": 86,
+        "status": "AVAILABLE",
+        "stockPercent": 57
+      }
+    ],
+    "services": [
+      "air",
+      "card_payment"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "low",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-46",
+    "name": "Mindspace Reliance",
+    "brand": "RELIANCE",
+    "address": "Mindspace Reliance, Malad, Mumbai",
+    "area": "Malad",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400052",
+    "latitude": 19.1834,
+    "longitude": 72.834,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": true,
+    "ev_charging_available": true,
+    "open_now": true,
+    "open24Hours": false,
+    "rating": 4.3,
+    "totalReviews": 2088,
+    "trustScore": 91,
+    "dataFreshness": "LIVE",
+    "phone": "022-26617544",
+    "verified": false,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 107.22,
+        "status": "AVAILABLE",
+        "stockPercent": 59
+      },
+      {
+        "type": "DIESEL",
+        "price": 93.83,
+        "status": "AVAILABLE",
+        "stockPercent": 93
+      },
+      {
+        "type": "CNG",
+        "price": 86,
+        "status": "AVAILABLE",
+        "stockPercent": 78
+      },
+      {
+        "type": "EV",
+        "price": 12.402096390440825,
+        "status": "AVAILABLE",
+        "stockPercent": 100
+      }
+    ],
+    "services": [
+      "air",
+      "washroom",
+      "food",
+      "ev_charging"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "high",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-47",
+    "name": "Malad East WEH",
+    "brand": "BPCL",
+    "address": "Malad East WEH, Malad, Mumbai",
+    "area": "Malad",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400028",
+    "latitude": 19.192,
+    "longitude": 72.865,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": false,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": true,
+    "rating": 4.1,
+    "totalReviews": 1454,
+    "trustScore": 90,
+    "dataFreshness": "LIVE",
+    "phone": "022-23455709",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 107.32,
+        "status": "AVAILABLE",
+        "stockPercent": 47
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.49,
+        "status": "AVAILABLE",
+        "stockPercent": 93
+      }
+    ],
+    "services": [
+      "air",
+      "washroom",
+      "card_payment"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "low",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-48",
+    "name": "Inorbit Mall Road",
+    "brand": "HPCL",
+    "address": "Inorbit Mall Road, Malad, Mumbai",
+    "area": "Malad",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400029",
+    "latitude": 19.178,
+    "longitude": 72.838,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": true,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": true,
+    "rating": 4.5,
+    "totalReviews": 1956,
+    "trustScore": 85,
+    "dataFreshness": "LIVE",
+    "phone": "022-28246002",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 106.01,
+        "status": "AVAILABLE",
+        "stockPercent": 77
+      },
+      {
+        "type": "DIESEL",
+        "price": 93.5,
+        "status": "AVAILABLE",
+        "stockPercent": 69
+      },
+      {
+        "type": "CNG",
+        "price": 86,
+        "status": "AVAILABLE",
+        "stockPercent": 56
+      }
+    ],
+    "services": [
+      "air",
+      "washroom"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "medium",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-49",
+    "name": "Malad West SV Road",
+    "brand": "IOCL",
+    "address": "Malad West SV Road, Malad, Mumbai",
+    "area": "Malad",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400047",
+    "latitude": 19.188,
+    "longitude": 72.845,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": true,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": false,
+    "rating": 4.8,
+    "totalReviews": 609,
+    "trustScore": 94,
+    "dataFreshness": "LIVE",
+    "phone": "022-27821136",
+    "verified": false,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 106.17,
+        "status": "AVAILABLE",
+        "stockPercent": 99
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.5,
+        "status": "AVAILABLE",
+        "stockPercent": 73
+      },
+      {
+        "type": "CNG",
+        "price": 86,
+        "status": "AVAILABLE",
+        "stockPercent": 55
+      }
+    ],
+    "services": [
+      "air",
+      "card_payment"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "low",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-50",
+    "name": "Liberty Garden Fuel",
+    "brand": "BPCL",
+    "address": "Liberty Garden Fuel, Malad, Mumbai",
+    "area": "Malad",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400014",
+    "latitude": 19.175,
+    "longitude": 72.848,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": false,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": false,
+    "rating": 4.2,
+    "totalReviews": 1231,
+    "trustScore": 84,
+    "dataFreshness": "LIVE",
+    "phone": "022-22131040",
+    "verified": false,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 107.15,
+        "status": "AVAILABLE",
+        "stockPercent": 50
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.33,
+        "status": "AVAILABLE",
+        "stockPercent": 83
+      }
+    ],
+    "services": [
+      "air"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "low",
+    "updated_at": "2026-04-09T15:52:33.223Z"
+  },
+  {
+    "id": "pump-gen-51",
+    "name": "Malad Link Road Point",
+    "brand": "SHELL",
+    "address": "Malad Link Road Point, Malad, Mumbai",
+    "area": "Malad",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400043",
+    "latitude": 19.168,
+    "longitude": 72.832,
+    "petrol_available": true,
+    "diesel_available": true,
+    "cng_available": false,
+    "ev_charging_available": false,
+    "open_now": true,
+    "open24Hours": false,
+    "rating": 4.3,
+    "totalReviews": 1548,
+    "trustScore": 82,
+    "dataFreshness": "LIVE",
+    "phone": "022-22470973",
+    "verified": true,
+    "fuels": [
+      {
+        "type": "PETROL",
+        "price": 107.42,
+        "status": "AVAILABLE",
+        "stockPercent": 78
+      },
+      {
+        "type": "DIESEL",
+        "price": 94.24,
+        "status": "AVAILABLE",
+        "stockPercent": 64
+      }
+    ],
+    "services": [
+      "air",
+      "washroom",
+      "wifi",
+      "food"
+    ],
+    "timings": {
+      "weekdays": "00:00 - 23:59",
+      "saturday": "00:00 - 23:59",
+      "sunday": "00:00 - 23:59"
+    },
+    "queue_level": "high",
+    "updated_at": "2026-04-09T15:52:33.223Z"
   }
 ]

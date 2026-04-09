@@ -1,6 +1,6 @@
-# PetrolPulze X - Backend
+# PetroPluze X - Backend
 
-A lightweight Node.js + Express backend using file-based JSON storage for the PetrolPulze X smart fuel station finder. No database required.
+A lightweight Node.js + Express backend using file-based JSON storage for the PetroPluze X smart fuel station finder. No database required.
 
 ## Prerequisites
 - Node.js (v16+)
