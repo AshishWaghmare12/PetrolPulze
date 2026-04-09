@@ -17,8 +17,6 @@ export default function MapView({ onStationSelect, height = '100%' }) {
   const markersRef = useRef({});
   const userMarkerRef = useRef(null);
   const popupRef = useRef(null);
-  const [heatmapData, setHeatmapData] = useState([]);
-  const [showHeatmap, setShowHeatmap] = useState(false);
   const [routeOptimization, setRouteOptimization] = useState(null);
   const [optimizing, setOptimizing] = useState(false);
 
@@ -92,34 +90,6 @@ export default function MapView({ onStationSelect, height = '100%' }) {
           ]
         }
       }, '3d-buildings');
-      
-      // Add fuel demand heatmap source
-      map.current.addSource('fuel-demand', {
-        type: 'geojson',
-        data: { type: 'FeatureCollection', features: [] }
-      });
-      
-      map.current.addLayer({
-        id: 'fuel-demand-heat',
-        type: 'heatmap',
-        source: 'fuel-demand',
-        maxzoom: 17,
-        paint: {
-          'heatmap-weight': ['get', 'intensity'],
-          'heatmap-intensity': 1,
-          'heatmap-color': [
-            'interpolate', ['linear'], ['heatmap-density'],
-            0, 'rgba(33,102,172,0)',
-            0.2, 'rgb(103,169,207)',
-            0.4, 'rgb(209,229,240)',
-            0.6, 'rgb(253,219,199)',
-            0.8, 'rgb(239,138,98)',
-            1, 'rgb(178,24,43)'
-          ],
-          'heatmap-radius': 30,
-          'heatmap-opacity': 0.7
-        }
-      });
     });
 
     map.current.on('moveend', () => {
@@ -155,6 +125,7 @@ export default function MapView({ onStationSelect, height = '100%' }) {
     stations.forEach((station) => {
       const color = BRAND_COLORS[station.brand] || '#64748b';
       const hasEV = station.fuels?.some((f) => f.type === 'EV' && f.status === 'AVAILABLE');
+      const isOpen = station.isOpen !== undefined ? station.isOpen : station.open_now;
 
       const el = document.createElement('div');
       el.style.width = '32px';
@@ -165,14 +136,14 @@ export default function MapView({ onStationSelect, height = '100%' }) {
       inner.className = 'marker-inner';
       inner.style.cssText = `
         width: 100%; height: 100%; border-radius: 50%;
-        background: ${station.isOpen ? '#ffffff' : '#f1f5f9'};
-        border: 2px solid ${station.isOpen ? color : '#94a3b8'};
-        color: ${station.isOpen ? color : '#94a3b8'};
+        background: ${isOpen ? '#ffffff' : '#f1f5f9'};
+        border: 2px solid ${isOpen ? color : '#94a3b8'};
+        color: ${isOpen ? color : '#94a3b8'};
         display: flex; align-items: center; justify-content: center;
         transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         font-size: 14px;
-        box-shadow: 0 4px 12px ${station.isOpen ? color + '40' : 'rgba(0,0,0,0.1)'};
-        opacity: ${station.isOpen ? '1' : '0.8'};
+        box-shadow: 0 4px 12px ${isOpen ? color + '40' : 'rgba(0,0,0,0.1)'};
+        opacity: ${isOpen ? '1' : '0.8'};
       `;
       inner.innerHTML = hasEV ? '⚡' : '⛽';
       el.appendChild(inner);
@@ -219,18 +190,26 @@ export default function MapView({ onStationSelect, height = '100%' }) {
   const showPopup = (station, lngLat) => {
     if (popupRef.current) popupRef.current.remove();
     const bestFuel = station.fuels?.find((f) => f.status === 'AVAILABLE');
-    popupRef.current = new mapboxgl.Popup({ closeButton: false, offset: 20 })
+    const rating = parseFloat(station.rating || station.ratingValue || 0);
+    const isOpen = station.isOpen !== undefined ? station.isOpen : station.open_now;
+
+    popupRef.current = new mapboxgl.Popup({ closeButton: false, offset: 12 })
       .setLngLat(lngLat)
       .setHTML(`
-        <div style="font-family:'Inter',sans-serif;padding:0px;min-width:180px;">
-          <div style="font-weight:700;font-size:14px;color:#0f172a;margin-bottom:2px;font-family:'Space Grotesk',sans-serif;">${station.name}</div>
-          <div style="font-size:11px;color:#64748b;margin-bottom:10px;">${station.area}</div>
-          <div style="display:flex;gap:8px;align-items:center;">
-            <span style="background:${station.isOpen ? 'rgba(16,185,129,0.15)' : 'rgba(239,68,68,0.15)'};color:${station.isOpen ? '#10b981' : '#ef4444'};padding:3px 8px;border-radius:6px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;">
-              ${station.isOpen ? (station.open24Hours ? 'OPEN 24/7' : 'OPEN') : 'CLOSED'}
+        <div style="font-family:'Inter',sans-serif; padding: 12px 14px; width: 220px; box-sizing: border-box;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2px; gap: 10px;">
+            <div style="font-weight:700; font-size: 13px; color: #0f172a; line-height: 1.3; font-family:'Space Grotesk',sans-serif;">${station.name}</div>
+            <div style="font-size: 10px; color: #64748b; white-space: nowrap; margin-top: 2px;">${station.area}</div>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: center; margin-top: 10px; border-top: 1px solid #f1f5f9; padding-top: 10px;">
+            <span style="background: ${isOpen ? 'rgba(16,185,129,0.12)' : 'rgba(239,68,68,0.12)'}; color: ${isOpen ? '#10b981' : '#ef4444'}; padding: 3px 8px; border-radius: 6px; font-size: 9px; font-weight: 800; text-transform: uppercase;">
+              ${isOpen ? 'OPEN' : 'CLOSED'}
             </span>
-            ${bestFuel ? `<span style="font-size:12px;color:#4f46e5;font-weight:700;">₹${bestFuel.price}/L</span>` : ''}
-            <span style="font-size:12px;color:#f59e0b;font-weight:700;margin-left:auto;">★ ${parseFloat(station.rating).toFixed(1)}</span>
+            ${bestFuel ? `<span style="font-size: 12px; color: #4f46e5; font-weight: 700;">₹${bestFuel.price}</span>` : ''}
+            <div style="display: flex; align-items: center; gap: 3px; font-size: 11px; color: #f59e0b; font-weight: 700; margin-left: auto;">
+              <span>★</span>
+              <span>${rating > 0 ? rating.toFixed(1) : 'New'}</span>
+            </div>
           </div>
         </div>
       `)
@@ -245,28 +224,34 @@ export default function MapView({ onStationSelect, height = '100%' }) {
       if (map.current.getLayer('route-glow')) map.current.removeLayer('route-glow');
       map.current.removeSource('route');
     }
-    if (!activeRoute) return;
+    if (!activeRoute || !activeRoute.geometry || !activeRoute.geometry.coordinates) return;
 
-    map.current.addSource('route', {
-      type: 'geojson',
-      data: { type: 'Feature', geometry: activeRoute.geometry },
-    });
-    map.current.addLayer({
-      id: 'route-glow',
-      type: 'line', source: 'route',
-      layout: { 'line-join': 'round', 'line-cap': 'round' },
-      paint: { 'line-color': '#4f46e5', 'line-width': 10, 'line-opacity': 0.18 },
-    });
-    map.current.addLayer({
-      id: 'route-line',
-      type: 'line', source: 'route',
-      layout: { 'line-join': 'round', 'line-cap': 'round' },
-      paint: { 'line-color': '#4f46e5', 'line-width': 4, 'line-opacity': 0.9 },
-    });
+    try {
+      map.current.addSource('route', {
+        type: 'geojson',
+        data: { type: 'Feature', geometry: activeRoute.geometry },
+      });
+      map.current.addLayer({
+        id: 'route-glow',
+        type: 'line', source: 'route',
+        layout: { 'line-join': 'round', 'line-cap': 'round' },
+        paint: { 'line-color': '#4f46e5', 'line-width': 10, 'line-opacity': 0.18 },
+      });
+      map.current.addLayer({
+        id: 'route-line',
+        type: 'line', source: 'route',
+        layout: { 'line-join': 'round', 'line-cap': 'round' },
+        paint: { 'line-color': '#4f46e5', 'line-width': 4, 'line-opacity': 0.9 },
+      });
 
-    const coords = activeRoute.geometry.coordinates;
-    const bounds = coords.reduce((b, c) => b.extend(c), new mapboxgl.LngLatBounds(coords[0], coords[0]));
-    map.current.fitBounds(bounds, { padding: 80, duration: 1000 });
+      const coords = activeRoute.geometry.coordinates;
+      if (coords && coords.length > 0) {
+        const bounds = coords.reduce((b, c) => b.extend(c), new mapboxgl.LngLatBounds(coords[0], coords[0]));
+        map.current.fitBounds(bounds, { padding: 80, duration: 1000 });
+      }
+    } catch (err) {
+      console.error('Mapbox Route Layer Error:', err);
+    }
   }, [activeRoute, mapReady]);
 
   // Isochrone layer
@@ -304,36 +289,12 @@ export default function MapView({ onStationSelect, height = '100%' }) {
     userMarkerRef.current = new mapboxgl.Marker({ element: el })
       .setLngLat([userLocation.lng, userLocation.lat])
       .addTo(map.current);
-    map.current.flyTo({ center: [userLocation.lng, userLocation.lat], zoom: 13, duration: 1500 });
-  }, [userLocation]);
-
-  // Heatmap toggle
-  useEffect(() => {
-    if (!map.current || !mapReady) return;
-    if (map.current.getLayer('fuel-demand-heat')) {
-      map.current.setLayoutProperty('fuel-demand-heat', 'visibility', showHeatmap ? 'visible' : 'none');
+    
+    // Only fly if no active route (MapPage handles complex logic)
+    if (!activeRoute) {
+       map.current.flyTo({ center: [userLocation.lng, userLocation.lat], zoom: 13, duration: 1500 });
     }
-  }, [showHeatmap, mapReady]);
-
-  // Generate heatmap data from stations
-  const toggleHeatmap = async () => {
-    if (!showHeatmap) {
-      try {
-        const res = await mapApi.markers();
-        if (res.success && res.data) {
-          const features = res.data.map(station => ({
-            type: 'Feature',
-            geometry: { type: 'Point', coordinates: [parseFloat(station.longitude), parseFloat(station.latitude)] },
-            properties: { intensity: (station.fuels?.[0]?.stockPercent || 50) / 100 }
-          }));
-          if (map.current.getSource('fuel-demand')) {
-            map.current.getSource('fuel-demand').setData({ type: 'FeatureCollection', features });
-          }
-        }
-      } catch (err) { console.error('Heatmap error:', err); }
-    }
-    setShowHeatmap(!showHeatmap);
-  };
+  }, [userLocation, activeRoute]);
 
   // Smart Route Optimizer
   const optimizeRoute = async (destination) => {
@@ -361,18 +322,6 @@ export default function MapView({ onStationSelect, height = '100%' }) {
         position: 'absolute', top: 16, left: 16, zIndex: 10,
         display: 'flex', flexDirection: 'column', gap: 8,
       }}>
-        <button onClick={toggleHeatmap} style={{
-          padding: '10px 14px', background: showHeatmap ? '#4f46e5' : 'rgba(255,255,255,0.95)',
-          border: '1px solid rgba(0,0,0,0.1)', borderRadius: 'var(--radius-md)',
-          fontSize: 13, fontWeight: 600, color: showHeatmap ? '#fff' : '#0f172a',
-          cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8,
-          backdropFilter: 'blur(10px)', boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-          transition: 'all 0.2s ease',
-        }}>
-          <span style={{ fontSize: 16 }}>🔥</span>
-          {showHeatmap ? 'Hide' : 'Fuel'} Heatmap
-        </button>
-        
         {selectedStation && (
           <button onClick={() => optimizeRoute({ lat: selectedStation.latitude, lng: selectedStation.longitude })} disabled={optimizing} style={{
             padding: '10px 14px', background: 'linear-gradient(135deg, #4f46e5, #7c3aed)',

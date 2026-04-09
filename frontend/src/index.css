@@ -9,7 +9,7 @@
 }
 
 :root {
-  /* ─── NEW THEME ─── */
+  /* ─── NEW LIGHT THEME ─── */
   --color-bg: #f8fafc;
   --color-surface: #ffffff;
   --color-surface-2: #f1f5f9;
@@ -17,21 +17,21 @@
   --color-border: rgba(0, 0, 0, 0.08);
   --color-border-hover: rgba(0, 0, 0, 0.15);
   --color-text: #0f172a;
-  --color-text-muted: #475569;
+  --color-text-muted: #64748b;
   --color-text-dim: #94a3b8;
 
   /* Indigo brand */
-  --color-primary: #4f46e5;
-  --color-primary-dark: #3730a3;
-  --color-primary-light: #e0e7ff;
-  --color-primary-glow: rgba(79, 70, 229, 0.15);
+  --color-primary: #6366f1;
+  --color-primary-dark: #4f46e5;
+  --color-primary-light: rgba(99, 102, 241, 0.2);
+  --color-primary-glow: rgba(99, 102, 241, 0.25);
 
   /* Accent + semantic */
   --color-accent: #f59e0b;
   --color-warning: #f59e0b;
   --color-danger: #ef4444;
   --color-success: #10b981;
-  --color-navy: #0f172a;
+  --color-navy: #020617;
 
   /* Fonts */
   --font-display: 'Space Grotesk', sans-serif;

@@ -46,7 +46,7 @@ export default function NavigationPanel({ activeRoute, onClear }) {
             🗺️ Active Route {expanded ? '▼' : '▶'}
           </div>
           <div style={{ fontSize: 11, color: '#64748b', marginTop: 2 }}>
-            {activeRoute.distanceKm} km · {activeRoute.durationMinutes} min
+            {activeRoute.distance} km · {activeRoute.duration} min
           </div>
         </div>
         <button 

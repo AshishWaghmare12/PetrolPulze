@@ -1,13 +1,14 @@
 require('dotenv').config();
-
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
 
-const routes = require('./routes');
-const { errorHandler, notFound } = require('./middlewares/errorHandler');
+const pumpRoutes = require('./routes/pumpRoutes');
+const routeRoutes = require('./routes/routeRoutes');
+const errorHandler = require('./middlewares/errorHandler');
+const notFound = require('./middlewares/notFound');
 
 const app = express();
 
@@ -42,7 +43,8 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 // Routes
-app.use('/api', routes);
+app.use('/api/pumps', pumpRoutes);
+app.use('/api/route', routeRoutes);
 
 // 404 + error handler
 app.use(notFound);

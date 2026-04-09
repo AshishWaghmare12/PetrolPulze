@@ -74,7 +74,7 @@ const HighwayScene = () => {
       {/* Sky gradient */}
       <div style={{
         position: 'absolute', inset: 0,
-        background: 'linear-gradient(180deg, #dbeafe 0%, #e0f2fe 30%, #f0f9ff 60%, #f8fafc 100%)',
+        background: 'linear-gradient(180deg, var(--color-surface) 0%, var(--color-bg) 100%)',
       }} />
 
       {/* Distant hills/horizon */}
@@ -152,8 +152,8 @@ const HighwayScene = () => {
             width: 30,
             height: '40%',
             background: v.dir === 'left'
-              ? 'linear-gradient(90deg, transparent, rgba(0,0,0,0.06))'
-              : 'linear-gradient(270deg, transparent, rgba(0,0,0,0.06))',
+              ? 'linear-gradient(90deg, transparent, var(--color-border))'
+              : 'linear-gradient(270deg, transparent, var(--color-border))',
           }} />
           {v.comp}
         </div>
@@ -231,7 +231,7 @@ const FeatureCard = ({ icon, title, desc, accent = '#4f46e5', delay = 0 }) => {
         onMouseEnter={() => setHov(true)}
         onMouseLeave={() => setHov(false)}
         style={{
-          background: '#ffffff',
+          background: 'var(--color-surface)',
           border: `1px solid ${hov ? accent + '40' : 'var(--color-border)'}`,
           borderRadius: 'var(--radius-xl)',
           padding: '28px 24px',
@@ -255,7 +255,7 @@ const FeatureCard = ({ icon, title, desc, accent = '#4f46e5', delay = 0 }) => {
 };
 
 const FEATURES = [
-  { icon: '⚡', title: 'Smart Nearest Ranking', desc: 'AI-weighted score: open status, stock %, ETA, distance, rating — computed in milliseconds.', accent: '#4f46e5' },
+  { icon: '⚡', title: 'Smart Nearest Ranking', desc: 'Real-time weighted score: open status, stock %, ETA, distance, rating.', accent: '#4f46e5' },
   { icon: '🗺️', title: 'Drive-Time Reachability', desc: 'See exactly which stations are reachable in 5, 10, or 15 minutes from your location.', accent: '#f59e0b' },
   { icon: '🔥', title: 'Fuel Price Heatmap', desc: 'Visualise price variations across Mumbai areas. Find the cheapest zone at a glance.', accent: '#f59e0b' },
   { icon: '🚨', title: 'Emergency Low-Fuel Mode', desc: 'One tap finds the closest open station with available stock when you\'re on fumes.', accent: '#ef4444' },
@@ -269,7 +269,7 @@ const FEATURES = [
 const MockStationCard = ({ name, area, dist, eta, rating, stocks, delay = 0 }) => (
   <Reveal delay={delay}>
     <div style={{
-      background: '#ffffff', border: '1px solid var(--color-border)',
+      background: 'var(--color-surface)', border: '1px solid var(--color-border)',
       borderRadius: 'var(--radius-lg)', padding: '16px 18px',
       boxShadow: 'var(--shadow-sm)', marginBottom: 10,
     }}>
@@ -333,21 +333,7 @@ export default function HomePage() {
         <div style={{ position: 'relative', zIndex: 10, textAlign: 'center', maxWidth: 820 }}>
 
           {/* Badge */}
-          <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: 7,
-            background: 'rgba(79,70,229,0.1)',
-            border: '1px solid rgba(79,70,229,0.25)',
-            borderRadius: '999px', padding: '6px 14px',
-            marginBottom: 28,
-            opacity: heroVisible ? 1 : 0,
-            transform: heroVisible ? 'none' : 'translateY(-10px)',
-            transition: 'all 0.6s ease',
-          }}>
-            <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#4f46e5', animation: 'pulse 2s infinite' }} />
-            <span style={{ fontSize: 12, color: '#4f46e5', fontWeight: 700, letterSpacing: '0.05em' }}>
-              MUMBAI'S SMARTEST FUEL FINDER
-            </span>
-          </div>
+
 
           {/* Headline */}
           <h1 style={{
@@ -356,7 +342,7 @@ export default function HomePage() {
             fontWeight: 800,
             lineHeight: 1.0,
             letterSpacing: '-0.04em',
-            color: '#0f172a',
+            color: 'var(--color-text)',
             marginBottom: 20,
             opacity: heroVisible ? 1 : 0,
             transform: heroVisible ? 'none' : 'translateY(20px)',
@@ -370,16 +356,7 @@ export default function HomePage() {
             }}>on the Highway Again</span>
           </h1>
 
-          <p style={{
-            fontSize: 18, color: '#475569', maxWidth: 560, margin: '0 auto 40px',
-            lineHeight: 1.7,
-            opacity: heroVisible ? 1 : 0,
-            transform: heroVisible ? 'none' : 'translateY(16px)',
-            transition: 'all 0.7s ease 0.2s',
-          }}>
-            Experience the future of smart refuelling — real-time intelligence
-            and seamless route planning across Mumbai.
-          </p>
+
 
           {/* CTA buttons */}
           <div style={{
@@ -396,70 +373,21 @@ export default function HomePage() {
               Find Fuel →
             </Link>
           </div>
-
-          {/* Stats bar */}
-          <div style={{
-            display: 'flex', gap: 0,
-            background: 'rgba(255,255,255,0.9)',
-            border: '1px solid rgba(0,0,0,0.07)',
-            borderRadius: 'var(--radius-2xl)',
-            marginTop: 60, overflow: 'hidden',
-            boxShadow: '0 4px 24px rgba(0,0,0,0.07)',
-            backdropFilter: 'blur(12px)',
-            opacity: heroVisible ? 1 : 0,
-            transform: heroVisible ? 'none' : 'translateY(12px)',
-            transition: 'all 0.7s ease 0.45s',
-          }}>
-            {[
-              ['60+', 'Stations'],
-              ['4', 'Fuel Types'],
-              ['< 2min', 'Find Nearest'],
-              ['24/7', 'Live Data'],
-              ['Free', 'No Signup'],
-            ].map(([v, l], i) => (
-              <div key={l} style={{
-                padding: '18px 32px',
-                borderRight: i < 4 ? '1px solid rgba(0,0,0,0.06)' : 'none',
-                textAlign: 'center',
-              }}>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: 24, fontWeight: 800, color: '#4f46e5' }}>{v}</div>
-                <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 3, textTransform: 'uppercase', letterSpacing: '0.06em', fontWeight: 600 }}>{l}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Scroll indicator */}
-        <div style={{
-          position: 'absolute', bottom: 32, left: '50%', transform: 'translateX(-50%)',
-          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6,
-          opacity: heroVisible ? 1 : 0, transition: 'opacity 1s ease 1s',
-        }}>
-          <span style={{ fontSize: 11, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Scroll</span>
-          <div style={{
-            width: 24, height: 36, border: '1.5px solid #cbd5e1',
-            borderRadius: 12, display: 'flex', justifyContent: 'center', paddingTop: 7,
-          }}>
-            <div style={{
-              width: 4, height: 8, background: '#4f46e5', borderRadius: 2,
-              animation: 'float 1.8s ease-in-out infinite',
-            }} />
-          </div>
         </div>
       </section>
 
       {/* ══════════════════════════════════════
           PROBLEM SECTION
       ══════════════════════════════════════ */}
-      <section style={{ padding: '110px 24px', background: '#fff' }}>
+      <section style={{ padding: '110px 24px', background: 'var(--color-surface)' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }}>
           <Reveal dir="left">
             <div>
               <div style={{ fontSize: 11, fontWeight: 700, color: '#4f46e5', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 14 }}>The Problem</div>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 44, fontWeight: 800, lineHeight: 1.1, letterSpacing: '-0.025em', marginBottom: 20, color: '#0f172a' }}>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 44, fontWeight: 800, lineHeight: 1.1, letterSpacing: '-0.025em', marginBottom: 20, color: 'var(--color-text)' }}>
                 Highway Fuel<br />Anxiety is Real
               </h2>
-              <p style={{ fontSize: 16, color: '#475569', lineHeight: 1.75, marginBottom: 32 }}>
+              <p style={{ fontSize: 16, color: 'var(--color-text-muted)', lineHeight: 1.75, marginBottom: 32 }}>
                 More than 3 million drivers on Mumbai highways face fuel anxiety daily.
                 Outdated maps, wrong stock info, and no real-time routing cost people
                 hours and emergency repair bills.
@@ -469,7 +397,7 @@ export default function HomePage() {
                 ['45min', 'average delay caused by wrong fuel stop info']].map(([v, l]) => (
                   <div key={v}>
                     <div style={{ fontFamily: 'var(--font-display)', fontSize: 36, fontWeight: 800, color: '#4f46e5' }}>{v}</div>
-                    <div style={{ fontSize: 13, color: '#64748b', maxWidth: 150, marginTop: 6, lineHeight: 1.5 }}>{l}</div>
+                    <div style={{ fontSize: 13, color: 'var(--color-text-dim)', maxWidth: 150, marginTop: 6, lineHeight: 1.5 }}>{l}</div>
                   </div>
                 ))}
               </div>
@@ -499,12 +427,12 @@ export default function HomePage() {
           <Reveal>
             <div style={{ textAlign: 'center', marginBottom: 64 }}>
               <div style={{ fontSize: 11, fontWeight: 700, color: '#4f46e5', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 12 }}>Intelligence Layer</div>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 46, fontWeight: 800, letterSpacing: '-0.03em', color: '#0f172a', marginBottom: 16 }}>
-                Real-time Intelligence<br />at Your Fingertips
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 46, fontWeight: 800, letterSpacing: '-0.03em', color: 'var(--color-text)', marginBottom: 16 }}>
+                Real-time Network<br />at Your Fingertips
               </h2>
-              <p style={{ fontSize: 16, color: '#64748b', maxWidth: 520, margin: '0 auto', lineHeight: 1.7 }}>
-                Never Make Fuel Stops Guesswork. PetrolPulze X is always on the
-                map, recalculating your optimal route.
+              <p style={{ fontSize: 16, color: 'var(--color-text-dim)', maxWidth: 520, margin: '0 auto', lineHeight: 1.7 }}>
+                Never make fuel stops guesswork. PetrolPulze is always on the
+                map, ready to find your optimal route.
               </p>
             </div>
           </Reveal>
@@ -517,7 +445,7 @@ export default function HomePage() {
       {/* ══════════════════════════════════════
           MAP SECTION
       ══════════════════════════════════════ */}
-      <section style={{ padding: '110px 24px', background: '#fff' }}>
+      <section style={{ padding: '110px 24px', background: 'var(--color-surface)' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }}>
           {/* Map mockup */}
           <Reveal dir="left">
@@ -574,8 +502,8 @@ export default function HomePage() {
                 background: 'rgba(255,255,255,0.95)', borderRadius: 'var(--radius-md)',
                 padding: '10px 14px', fontSize: 12, boxShadow: 'var(--shadow-md)',
               }}>
-                <div style={{ color: '#64748b', fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.06em' }}>Selected Station</div>
-                <div style={{ fontWeight: 700, color: '#0f172a', marginTop: 2 }}>Shell V-Power · Andheri W</div>
+                <div style={{ color: 'var(--color-text-dim)', fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.06em' }}>Selected Station</div>
+                <div style={{ fontWeight: 700, color: 'var(--color-text)', marginTop: 2 }}>Shell V-Power · Andheri W</div>
                 <div style={{ color: '#4f46e5', marginTop: 2, fontWeight: 600 }}>6 min · 2.4 km</div>
               </div>
             </div>
@@ -584,10 +512,10 @@ export default function HomePage() {
           <Reveal dir="right" delay={0.1}>
             <div>
               <div style={{ fontSize: 11, fontWeight: 700, color: '#4f46e5', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 14 }}>Map Intelligence</div>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 42, fontWeight: 800, lineHeight: 1.1, letterSpacing: '-0.025em', marginBottom: 20, color: '#0f172a' }}>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 42, fontWeight: 800, lineHeight: 1.1, letterSpacing: '-0.025em', marginBottom: 20, color: 'var(--color-text)' }}>
                 Connected Roads,<br />Smarter Ecosystems
               </h2>
-              <p style={{ fontSize: 15, color: '#475569', lineHeight: 1.75, marginBottom: 32 }}>
+              <p style={{ fontSize: 15, color: 'var(--color-text-muted)', lineHeight: 1.75, marginBottom: 32 }}>
                 Our map intelligence calculates distances, predicts queue times,
                 draws reachability rings, and routes you to the optimal station
                 in real time — powered by Mapbox.
@@ -600,12 +528,12 @@ export default function HomePage() {
                   <div style={{ width: 40, height: 40, borderRadius: 'var(--radius-md)', background: 'var(--color-primary-light)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, flexShrink: 0 }}>{item.icon}</div>
                   <div>
                     <div style={{ fontWeight: 700, fontSize: 15, marginBottom: 4 }}>{item.t}</div>
-                    <div style={{ fontSize: 13, color: '#64748b', lineHeight: 1.6 }}>{item.d}</div>
+                    <div style={{ fontSize: 13, color: 'var(--color-text-dim)', lineHeight: 1.6 }}>{item.d}</div>
                   </div>
                 </div>
               ))}
               <button onClick={handleExplore} className="btn btn-primary" style={{ padding: '13px 28px', fontSize: 15, fontWeight: 700, borderRadius: 'var(--radius-lg)', marginTop: 8 }}>
-                Open Live Map →
+                Open Map →
               </button>
             </div>
           </Reveal>
@@ -619,20 +547,20 @@ export default function HomePage() {
         <div style={{ maxWidth: 1000, margin: '0 auto', textAlign: 'center' }}>
           <Reveal>
             <div style={{ fontSize: 11, fontWeight: 700, color: '#4f46e5', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 12 }}>Our Mission</div>
-            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 46, fontWeight: 800, letterSpacing: '-0.025em', marginBottom: 18, color: '#0f172a' }}>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 46, fontWeight: 800, letterSpacing: '-0.025em', marginBottom: 18, color: 'var(--color-text)' }}>
               Journey to Zero Anxiety
             </h2>
-            <p style={{ fontSize: 16, color: '#64748b', lineHeight: 1.7, marginBottom: 60, maxWidth: 560, margin: '0 auto 60px' }}>
+            <p style={{ fontSize: 16, color: 'var(--color-text-dim)', lineHeight: 1.7, marginBottom: 60, maxWidth: 560, margin: '0 auto 60px' }}>
               We're building towards a future where no driver worries about fuel on the road.
             </p>
           </Reveal>
           <div style={{ display: 'flex', justifyContent: 'center', gap: 64, flexWrap: 'wrap' }}>
             {[
-              ['🗺️', '1 Open', 'Platform launched'],
-              ['🏙️', '1 City', 'Mumbai first'],
-              ['📍', '0.1 km', 'Target precision'],
-              ['📊', '4 States', 'Expansion planned'],
-              ['🚗', '9 Plus', 'City rollouts'],
+              ['🗺️', '1 Platform', 'Launched today'],
+              ['🏙️', '1 City', 'Mumbai'],
+              ['📍', '0.1 km', 'Precision'],
+              ['📊', '50+', 'Stations'],
+              ['🚗', '100%', 'Reliable'],
             ].map(([icon, val, sub], i) => (
               <StatItem key={val} value={`${icon} ${val}`} label={sub} delay={i * 0.1} />
             ))}
@@ -662,11 +590,11 @@ export default function HomePage() {
               <span style={{ color: '#4f46e5' }}>Next</span> Transition
             </h2>
             <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.55)', lineHeight: 1.7, marginBottom: 16 }}>
-              We're building India's most intelligent fuel network — real-time availability,
-              routing intelligence, and station data to help every driver.
+              We're building a reliable fuel network — real-time availability,
+              and station data to help every driver.
             </p>
             <div style={{ display: 'flex', gap: 48, justifyContent: 'center', marginBottom: 44 }}>
-              {[['50,000+', 'App Users'], ['100%', 'Data Verified']].map(([v, l]) => (
+              {[['100%', 'Data Verified']].map(([v, l]) => (
                 <div key={l} style={{ textAlign: 'center' }}>
                   <div style={{ fontFamily: 'var(--font-display)', fontSize: 32, fontWeight: 800, color: '#4f46e5' }}>{v}</div>
                   <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', marginTop: 4 }}>{l}</div>
@@ -687,13 +615,13 @@ export default function HomePage() {
       </section>
 
       {/* FOOTER */}
-      <footer style={{ background: '#fff', borderTop: '1px solid var(--color-border)', padding: '28px 24px' }}>
+      <footer style={{ background: 'var(--color-surface)', borderTop: '1px solid var(--color-border)', padding: '28px 24px' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <svg width="22" height="22" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="9" fill="#4f46e5" /><path d="M16 6L22 13L16 20L10 13Z" fill="white" /><path d="M16 20V27" stroke="white" strokeWidth="2.5" strokeLinecap="round" /></svg>
-            <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 15, color: '#0f172a' }}>PetrolPulze</span>
+            <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 15, color: 'var(--color-text)' }}>PetrolPulze</span>
           </div>
-          <div style={{ fontSize: 12, color: '#94a3b8' }}>© 2025 PetrolPulze X · Mumbai, India</div>
+          <div style={{ fontSize: 12, color: '#94a3b8' }}>© PetrolPulze · Colloquium 2026</div>
           <div style={{ display: 'flex', gap: 24 }}>
             {['Privacy Policy', 'Terms of Service', 'Highway Assistance'].map(l => (
               <a key={l} href="#" style={{ fontSize: 13, color: '#94a3b8', textDecoration: 'none' }}

@@ -1,125 +1,133 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { stationsApi, mapApi } from '../services/api';
 import { useMapStore } from '../store';
 import MiniMap from '../components/map/MiniMap';
 
 const FUEL_TYPES = ['PETROL', 'DIESEL', 'CNG', 'EV'];
-const STATUSES = ['open', 'all'];
-const RADII = [2, 5, 10, 20];
-const BRAND_COLORS = { IOCL: '#f97316', BPCL: '#3b82f6', HPCL: '#22c55e', SHELL: '#eab308', NAYARA: '#8b5cf6' };
+const RADII = [
+  { value: 5, label: 'Within 5 KM' },
+  { value: 10, label: 'Within 10 KM' },
+  { value: 25, label: 'Within 25 KM' },
+  { value: 50, label: 'Within 50 KM' },
+  { value: 9999, label: 'Any Distance' },
+];
 
-function getStockColor(pct) {
-  if (pct > 60) return '#22c55e';
-  if (pct > 25) return '#f59e0b';
-  return '#ef4444';
-}
 function getStatusBadge(s) {
-  if (s.isOpen) return { label: s.open24Hours ? 'OPEN 24/7' : 'OPEN', color: '#22c55e', bg: 'rgba(34,197,94,0.12)' };
-  return { label: 'CLOSED', color: '#ef4444', bg: 'rgba(239,68,68,0.12)' };
+  if (s.open_now) return { label: s.open24Hours ? 'OPEN 24/7' : 'OPEN', color: '#10b981', bg: '#f0fdf4' };
+  return { label: 'CLOSED', color: '#ef4444', bg: '#fef2f2' };
+}
+
+function FilterDropdown({ value, onChange, options, icon, placeholder }) {
+  return (
+    <div style={{ position: 'relative', flex: '1 1 160px', minWidth: '140px' }}>
+      <div style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', fontSize: '14px' }}>
+        {icon}
+      </div>
+      <select 
+        value={value} 
+        onChange={e => onChange(e.target.value)} 
+        style={{
+          width: '100%',
+          height: '52px',
+          padding: '0 36px 0 44px',
+          background: '#f8fafc',
+          border: '1px solid #eef2f6',
+          borderRadius: '16px',
+          fontSize: '14px',
+          fontWeight: 600,
+          color: '#0f172a',
+          appearance: 'none',
+          cursor: 'pointer',
+          outline: 'none',
+          transition: 'all 0.2s ease',
+        }}
+        onFocus={e => e.target.style.borderColor = '#06b6d4'}
+        onBlur={e => e.target.style.borderColor = '#eef2f6'}
+      >
+        <option value="">{placeholder}</option>
+        {options.map(opt => (
+          <option key={opt.value ?? opt} value={opt.value ?? opt}>{opt.label ?? opt}</option>
+        ))}
+      </select>
+      <div style={{ position: 'absolute', right: '16px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: '#94a3b8', fontSize: '12px' }}>
+        ▼
+      </div>
+    </div>
+  );
 }
 
 function StationRow({ station, onRoute, onDetails, rank }) {
   const badge = getStatusBadge(station);
-  const meta = station._meta || {};
-  const bestFuel = (station.fuels || []).find(f => f.status !== 'OUT') || station.fuels?.[0];
+  const dist = station.distance || 0;
 
   return (
     <div style={{
-      background: rank === 0 ? 'rgba(79,70,229,0.04)' : '#ffffff',
-      border: `1px solid ${rank === 0 ? 'rgba(79,70,229,0.2)' : 'rgba(0,0,0,0.08)'}`,
-      borderRadius: 'var(--radius-lg)',
-      padding: 20,
-      display: 'flex', gap: 16, alignItems: 'flex-start',
-      transition: 'var(--transition)',
+      background: '#ffffff',
+      border: '1px solid #eef2f6',
+      borderRadius: '24px',
+      padding: '24px',
+      display: 'flex', gap: 20, alignItems: 'center',
+      transition: 'all 0.2s ease',
       cursor: 'pointer',
-      marginBottom: 12,
+      marginBottom: 16,
+      boxShadow: rank === 0 ? '0 8px 24px rgba(79,70,229,0.06)' : 'none'
     }}
-      onMouseEnter={e => e.currentTarget.style.borderColor = 'rgba(79,70,229,0.3)'}
-      onMouseLeave={e => e.currentTarget.style.borderColor = rank === 0 ? 'rgba(79,70,229,0.2)' : 'rgba(0,0,0,0.08)'}
+      onMouseEnter={e => {
+        e.currentTarget.style.borderColor = 'rgba(79,70,229,0.3)';
+        e.currentTarget.style.transform = 'translateY(-2px)';
+      }}
+      onMouseLeave={e => {
+        e.currentTarget.style.borderColor = '#eef2f6';
+        e.currentTarget.style.transform = 'translateY(0)';
+      }}
       onClick={() => onDetails(station.id)}
     >
-      {/* Rank badge */}
       <div style={{
-        width: 36, height: 36, borderRadius: 'var(--radius-md)', flexShrink: 0,
+        width: rank === 0 ? '56px' : '44px', height: rank === 0 ? '56px' : '44px', 
+        borderRadius: '16px', flexShrink: 0,
         background: rank === 0 ? '#4f46e5' : '#f8fafc',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-        fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 15,
+        fontWeight: 800, fontSize: rank === 0 ? 20 : 16,
         color: rank === 0 ? '#fff' : '#64748b',
+        boxShadow: rank === 0 ? '0 4px 12px rgba(79,70,229,0.3)' : 'none'
       }}>
         {rank === 0 ? '★' : rank + 1}
       </div>
 
-      {/* Content */}
       <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 4, flexWrap: 'wrap' }}>
-          <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 16 }}>{station.name}</span>
-          <span style={{ padding: '2px 8px', borderRadius: '999px', fontSize: 10, fontWeight: 700, background: badge.bg, color: badge.color }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 4 }}>
+          <span style={{ fontWeight: 800, fontSize: '18px', color: '#0f172a' }}>{station.name}</span>
+          <span style={{ padding: '4px 10px', borderRadius: '8px', fontSize: '10px', fontWeight: 800, background: badge.bg, color: badge.color, textTransform: 'uppercase' }}>
             {badge.label}
           </span>
-          {bestFuel && bestFuel.stockPercent < 30 && bestFuel.stockPercent > 0 && (
-            <span style={{ padding: '2px 8px', borderRadius: '999px', fontSize: 10, fontWeight: 700, background: 'rgba(245,158,11,0.12)', color: '#f59e0b' }}>LOW STOCK</span>
-          )}
         </div>
-        <div style={{ fontSize: 13, color: '#64748b', marginBottom: 10 }}>
-          {station.area} · {station.address?.split(',').slice(0, 2).join(',')}
+        <div style={{ fontSize: '14px', color: '#64748b', marginBottom: 12 }}>
+          {station.area} · {station.address}
         </div>
 
-        {/* Meta row */}
-        <div style={{ display: 'flex', gap: 20, marginBottom: 12, flexWrap: 'wrap' }}>
-          {meta.distanceKm !== undefined && (
-            <div>
-              <div style={{ fontSize: 10, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Distance</div>
-              <div style={{ fontWeight: 700, fontSize: 14, color: '#0f172a' }}>{meta.distanceKm} km</div>
-            </div>
-          )}
-          {meta.etaMinutes !== undefined && (
-            <div>
-              <div style={{ fontSize: 10, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Travel Time</div>
-              <div style={{ fontWeight: 700, fontSize: 14, color: '#0f172a' }}>{meta.etaMinutes} mins</div>
-            </div>
-          )}
-          <div>
-            <div style={{ fontSize: 10, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Rating</div>
-            <div style={{ fontWeight: 700, fontSize: 14, color: '#f59e0b' }}>★ {station.rating}</div>
-          </div>
-          {meta.smartScore !== undefined && (
-            <div>
-              <div style={{ fontSize: 10, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Score</div>
-              <div style={{ fontWeight: 700, fontSize: 14, color: '#4f46e5' }}>{meta.smartScore}</div>
-            </div>
-          )}
-        </div>
-
-        {/* Fuel tags */}
-        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
           {(station.fuels || []).map(f => (
             <span key={f.type} style={{
-              padding: '3px 10px', borderRadius: '999px', fontSize: 11, fontWeight: 600,
-              background: f.status === 'AVAILABLE' ? 'rgba(79,70,229,0.1)' : f.status === 'LOW' ? 'rgba(245,158,11,0.1)' : 'rgba(239,68,68,0.08)',
-              color: f.status === 'AVAILABLE' ? '#4f46e5' : f.status === 'LOW' ? '#f59e0b' : '#ef4444',
+              padding: '4px 12px', borderRadius: '8px', fontSize: '11px', fontWeight: 700,
+              background: '#f8fafc', color: '#475569', border: '1px solid #e2e8f0'
             }}>
               {f.type}
             </span>
           ))}
+          <span style={{ marginLeft: 'auto', fontWeight: 800, color: '#0f172a', fontSize: '15px' }}>
+            {dist.toFixed(1)} km 
+          </span>
         </div>
       </div>
 
-      {/* Actions */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flexShrink: 0 }}>
+      <div style={{ display: 'flex', gap: 10, flexShrink: 0 }}>
         <button
-          className="btn btn-ghost"
+          className="btn-premium"
           onClick={e => { e.stopPropagation(); onRoute(station); }}
-          style={{ padding: '7px 14px', fontSize: 12 }}
+          style={{ padding: '12px 22px', fontSize: 13, background: '#06b6d4', borderRadius: '14px' }}
         >
           🗺️ Route
-        </button>
-        <button
-          className="btn btn-primary"
-          onClick={e => { e.stopPropagation(); onDetails(station.id); }}
-          style={{ padding: '7px 14px', fontSize: 12 }}
-        >
-          Details
         </button>
       </div>
     </div>
@@ -135,14 +143,10 @@ export default function FindFuelPage() {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [fuelType, setFuelType] = useState('');
   const [status, setStatus] = useState('all');
-  const [radius, setRadius] = useState(10);
-  const [brand, setBrand] = useState('');
-  const [sort, setSort] = useState('smartScore');
+  const [radius, setRadius] = useState(50);
   const [stations, setStations] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searchedLoc, setSearchedLoc] = useState(null);
-  const [searchLabel, setSearchLabel] = useState('');
-  const [view, setView] = useState('list');
   const autocompleteTimer = useRef(null);
 
   useEffect(() => {
@@ -152,7 +156,7 @@ export default function FindFuelPage() {
   const fetchSuggestions = async (q) => {
     if (q.length < 2) { setSuggestions([]); return; }
     try {
-      const res = await mapApi.autocomplete(q, userLocation?.lat, userLocation?.lng);
+      const res = await mapApi.autocomplete(q);
       setSuggestions(res.data || []);
       setShowSuggestions(true);
     } catch { setSuggestions([]); }
@@ -166,27 +170,27 @@ export default function FindFuelPage() {
   };
 
   const pickSuggestion = (s) => {
-    setQuery(s.placeName);
-    setSearchedLoc({ lat: s.lat, lng: s.lng });
-    setSearchLabel(s.text);
+    setQuery(s.name);
+    setSearchedLoc({ lat: s.latitude, lng: s.longitude });
     setSuggestions([]);
     setShowSuggestions(false);
+    handleSearch({ lat: s.latitude, lng: s.longitude });
   };
 
-  const handleSearch = async () => {
-    const loc = searchedLoc || userLocation;
+  const handleSearch = async (overrideLoc = null) => {
+    const loc = overrideLoc || searchedLoc || userLocation;
     if (!loc) { locateUser(); return; }
     setLoading(true);
     try {
       const params = {
-        lat: loc.lat, lng: loc.lng, radiusKm: radius,
+        lat: loc.lat, lng: loc.lng, radius: radius,
         ...(fuelType && { fuelType }),
         ...(status === 'open' && { openNow: true }),
-        ...(brand && { brand }),
-        ...(sort !== 'smartScore' && { sort })
       };
       const res = await stationsApi.nearby(params);
-      if (res.success) setStations(res.data || []);
+      if (res.success) {
+        setStations((res.data || []).slice(0, 5));
+      }
     } catch (err) {
       console.error(err);
     } finally {
@@ -195,235 +199,136 @@ export default function FindFuelPage() {
   };
 
   useEffect(() => {
-    if (userLocation) handleSearch();
-  }, [userLocation]);
+    if (userLocation && !searchedLoc) handleSearch();
+  }, [userLocation, radius, fuelType, status]);
 
-  const handleRoute = (station) => {
-    navigate(`/map?stationId=${station.id}`);
-  };
+  const handleRoute = (station) => navigate(`/map?stationId=${station.id}&route=true`);
   const handleDetails = (id) => navigate(`/station/${id}`);
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--color-bg)', paddingTop: 60 }}>
+    <div style={{ minHeight: '100vh', background: '#f8fafc', paddingTop: 80, paddingBottom: 60 }}>
       {/* Header */}
-      <div style={{ background: '#ffffff', borderBottom: '1px solid var(--color-border)', padding: '40px 24px' }}>
-        <div style={{ maxWidth: 960, margin: '0 auto', textAlign: 'center' }}>
-          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 40, fontWeight: 800, marginBottom: 10, letterSpacing: '-0.02em' }}>
-            Find Fuel Near You
+      <div style={{ background: '#ffffff', borderBottom: '1px solid #eef2f6', padding: '80px 24px' }}>
+        <div style={{ maxWidth: 1100, margin: '0 auto', textAlign: 'center' }}>
+          <h1 style={{ fontSize: 48, fontWeight: 900, marginBottom: 12, color: '#0f172a' }}>
+            Find the <span style={{ color: '#06b6d4' }}>Nearest</span> Fuel
           </h1>
-          <p style={{ fontSize: 16, color: '#64748b', marginBottom: 32 }}>
-            Search nearby stations by fuel type, distance, and real-time availability in Mumbai.
+          <p style={{ fontSize: 17, color: '#64748b', marginBottom: 48, maxWidth: 640, margin: '0 auto 48px' }}>
+            Locate available stations across Mumbai. Optimized for speed and real-time accuracy.
           </p>
 
-          {/* Search bar */}
+          {/* Redesigned Search bar */}
           <div style={{
-            background: '#f8fafc',
-            border: '1px solid var(--color-border)',
-            borderRadius: 'var(--radius-xl)',
-            padding: '12px 16px',
-            display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap',
-            maxWidth: 860, margin: '0 auto', position: 'relative',
+            background: '#ffffff',
+            border: '1px solid #e2e8f0',
+            borderRadius: '32px',
+            padding: '16px',
+            display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap',
+            maxWidth: 1060, margin: '0 auto', position: 'relative',
+            boxShadow: '0 20px 40px rgba(0,0,0,0.04)'
           }}>
-            {/* Location input */}
-            <div style={{ flex: '2 1 240px', position: 'relative' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, background: '#ffffff', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', padding: '9px 12px' }}>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" strokeWidth="2.5"><circle cx="12" cy="10" r="3"/><path d="M12 21c-4-5-8-9.5-8-11a8 8 0 0116 0c0 1.5-4 6-8 11z"/></svg>
+            {/* Search Input Box */}
+            <div style={{ flex: '3 1 340px', position: 'relative' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12, background: '#f8fafc', border: '1px solid #eef2f6', borderRadius: '18px', padding: '0 20px', height: '52px' }}>
+                <span style={{ fontSize: '18px' }}>🔍</span>
                 <input
                   className="input"
                   value={query}
                   onChange={onQueryChange}
                   onFocus={() => suggestions.length > 0 && setShowSuggestions(true)}
-                  onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
-                  placeholder="Enter area, station or city…"
-                  style={{ background: 'transparent', border: 'none', padding: 0, boxShadow: 'none', fontSize: 14 }}
+                  onBlur={() => setTimeout(() => setShowSuggestions(false), 250)}
+                  placeholder="Enter location or station name..."
+                  style={{ background: 'transparent', border: 'none', padding: 0, boxShadow: 'none', fontSize: 15, width: '100%', fontWeight: 500 }}
                 />
               </div>
               {showSuggestions && suggestions.length > 0 && (
                 <div style={{
-                  position: 'absolute', top: '100%', left: 0, right: 0, zIndex: 100,
-                  background: '#ffffff', border: '1px solid var(--color-border)',
-                  borderRadius: 'var(--radius-md)', marginTop: 4,
-                  boxShadow: '0 8px 32px rgba(0,0,0,0.1)', overflow: 'hidden',
+                  position: 'absolute', top: '110%', left: 0, right: 0, zIndex: 100,
+                  background: '#ffffff', border: '1px solid #eef2f6',
+                  borderRadius: '24px', padding: '8px',
+                  boxShadow: '0 12px 48px rgba(0,0,0,0.12)', overflow: 'hidden',
                 }}>
                   {suggestions.slice(0, 5).map((s) => (
                     <div key={s.id} onClick={() => pickSuggestion(s)} style={{
-                      padding: '10px 14px', fontSize: 13, cursor: 'pointer',
-                      borderBottom: '1px solid var(--color-border)',
-                      transition: 'var(--transition)',
+                      padding: '14px 20px', fontSize: 14, cursor: 'pointer',
+                      borderRadius: '14px', transition: 'all 0.2s ease',
                     }}
                       onMouseEnter={e => e.currentTarget.style.background = '#f8fafc'}
                       onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
                     >
-                      <div style={{ fontWeight: 600 }}>{s.text}</div>
-                      <div style={{ fontSize: 11, color: '#94a3b8' }}>{s.placeName}</div>
+                      <div style={{ fontWeight: 800, color: '#0f172a' }}>{s.name}</div>
+                      <div style={{ fontSize: 12, color: '#94a3b8' }}>{s.area} · {s.address}</div>
                     </div>
                   ))}
                 </div>
               )}
             </div>
 
-            {/* Fuel type */}
-            <select value={fuelType} onChange={e => setFuelType(e.target.value)} className="input" style={{ flex: '1 1 120px', background: '#ffffff', fontSize: 13 }}>
-              <option value="">Fuel Type</option>
-              {FUEL_TYPES.map(t => <option key={t} value={t}>{t}</option>)}
-            </select>
+            {/* Styled Dropdowns */}
+            <FilterDropdown 
+              value={fuelType} 
+              onChange={setFuelType} 
+              options={FUEL_TYPES} 
+              icon="⛽" 
+              placeholder="Fuel Type" 
+            />
+            
+            <FilterDropdown 
+              value={status} 
+              onChange={setStatus} 
+              options={[{ value: 'all', label: 'All Stations' }, { value: 'open', label: 'Open Now' }]} 
+              icon="🕒" 
+              placeholder="Status" 
+            />
 
-            {/* Status */}
-            <select value={status} onChange={e => setStatus(e.target.value)} className="input" style={{ flex: '1 1 120px', background: '#ffffff', fontSize: 13 }}>
-              <option value="all">All Status</option>
-              <option value="open">Open Now</option>
-            </select>
+            <FilterDropdown 
+              value={radius} 
+              onChange={val => setRadius(Number(val))} 
+              options={RADII} 
+              icon="📍" 
+              placeholder="Distance" 
+            />
 
-            {/* Radius */}
-            <select value={radius} onChange={e => setRadius(Number(e.target.value))} className="input" style={{ flex: '0 0 90px', background: '#ffffff', fontSize: 13 }}>
-              {RADII.map(r => <option key={r} value={r}>{r} km</option>)}
-            </select>
-
-            {/* Brand */}
-            <select value={brand} onChange={e => setBrand(e.target.value)} className="input" style={{ flex: '1 1 120px', background: '#ffffff', fontSize: 13 }}>
-              <option value="">All Brands</option>
-              {Object.keys(BRAND_COLORS).map(b => <option key={b} value={b}>{b}</option>)}
-            </select>
-
-            {/* Sort */}
-            <select value={sort} onChange={e => setSort(e.target.value)} className="input" style={{ flex: '1 1 120px', background: '#ffffff', fontSize: 13 }}>
-              <option value="smartScore">Smart Score</option>
-              <option value="rating">Top Rated</option>
-            </select>
-
-            <button onClick={handleSearch} disabled={loading} className="btn btn-primary" style={{ flex: '0 0 auto', padding: '10px 22px', fontSize: 14, fontWeight: 600 }}>
-              {loading ? '…' : '🔍 Search'}
+            <button onClick={() => handleSearch()} disabled={loading} className="btn-premium" style={{ 
+              flex: '0 0 auto', height: '52px', padding: '0 32px', fontSize: 15, background: '#0f172a', borderRadius: '18px',
+              boxShadow: '0 8px 16px rgba(15,23,42,0.15)'
+            }}>
+              {loading ? 'Searching...' : 'Find Fuel'}
             </button>
           </div>
         </div>
       </div>
 
       {/* Results */}
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '32px 24px', display: 'grid', gridTemplateColumns: '1fr 380px', gap: 24, alignItems: 'start' }}>
-        {/* Left: list */}
-        <div>
-          {/* Results header */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
-            <div>
-              <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 18 }}>
-                {loading ? 'Searching…' : `${stations.length} stations found${searchLabel ? ` near ${searchLabel}` : ' nearby'}`}
-              </div>
-              {!loading && stations.length > 0 && (
-                <div style={{ fontSize: 12, color: '#64748b', marginTop: 2 }}>Sorted by smart availability score</div>
-              )}
-            </div>
-            <div style={{ display: 'flex', gap: 8 }}>
-              {['list', 'map'].map(v => (
-                <button key={v} onClick={() => v === 'map' ? navigate('/map') : setView(v)}
-                  className={`btn ${view === v ? 'btn-primary' : 'btn-ghost'}`}
-                  style={{ padding: '6px 14px', fontSize: 12, textTransform: 'capitalize' }}>
-                  {v === 'list' ? '☰ List' : '🗺️ Map'}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Best pick banner */}
-          {!loading && stations.length > 0 && (
-            <div style={{
-              background: 'rgba(79,70,229,0.05)',
-              border: '1px solid rgba(79,70,229,0.15)',
-              borderRadius: 'var(--radius-md)',
-              padding: '8px 14px',
-              fontSize: 12,
-              color: '#4f46e5',
-              fontWeight: 600,
-              marginBottom: 16,
-              display: 'flex',
-              alignItems: 'center',
-              gap: 8,
-            }}>
-              ★ BEST AVAILABLE NEARBY
-            </div>
-          )}
-
-          {/* Skeleton loader */}
-          {loading && Array.from({ length: 3 }).map((_, i) => (
-            <div key={i} style={{ background: '#ffffff', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-lg)', padding: 20, marginBottom: 12 }}>
-              <div style={{ display: 'flex', gap: 14 }}>
-                <div className="skeleton" style={{ width: 36, height: 36, borderRadius: 'var(--radius-md)', flexShrink: 0 }} />
-                <div style={{ flex: 1 }}>
-                  <div className="skeleton" style={{ height: 16, width: '60%', marginBottom: 8 }} />
-                  <div className="skeleton" style={{ height: 12, width: '80%', marginBottom: 12 }} />
-                  <div style={{ display: 'flex', gap: 16 }}>
-                    {[80, 60, 60, 50].map((w, j) => <div key={j} className="skeleton" style={{ height: 32, width: w }} />)}
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-
-          {/* Station rows */}
-          {!loading && stations.map((s, i) => (
-            <StationRow key={s.id} station={s} rank={i} onRoute={handleRoute} onDetails={handleDetails} />
-          ))}
-
-          {!loading && stations.length === 0 && (
-            <div style={{ textAlign: 'center', padding: '60px 20px', color: '#64748b' }}>
-              <div style={{ fontSize: 40, marginBottom: 16 }}>🔍</div>
-              <div style={{ fontFamily: 'var(--font-display)', fontSize: 18, fontWeight: 700, marginBottom: 8 }}>No stations found</div>
-              <div style={{ fontSize: 14 }}>Try expanding the radius or removing filters</div>
-              <button onClick={() => { setFuelType(''); setStatus('all'); setRadius(20); handleSearch(); }}
-                className="btn btn-ghost" style={{ marginTop: 20 }}>Clear Filters</button>
+      <div style={{ maxWidth: 1000, margin: '0 auto', padding: '60px 24px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 40 }}>
+          <h2 style={{ fontSize: '24px', fontWeight: 900, color: '#0f172a' }}>
+            {loading ? 'Scanning Nearby...' : `Top ${stations.length} Closest Matches`}
+          </h2>
+          {stations.length > 0 && (
+            <div style={{ fontSize: '13px', color: '#64748b', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+              Verified Availability
             </div>
           )}
         </div>
 
-        {/* Right: live map preview + closest pin */}
-        <div style={{ position: 'sticky', top: 80 }}>
-          <div style={{
-            background: '#ffffff',
-            border: '1px solid var(--color-border)',
-            borderRadius: 'var(--radius-xl)',
-            overflow: 'hidden',
-          }}>
-            <div style={{ padding: '14px 18px', borderBottom: '1px solid var(--color-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{ fontWeight: 700, fontSize: 14 }}>Live Traffic View</span>
-              <Link to="/map" style={{ fontSize: 13, color: '#4f46e5', fontWeight: 600, textDecoration: 'none' }}>Full Map →</Link>
-            </div>
-            {userLocation ? (
-              <MiniMap 
-                center={userLocation} 
-                markers={stations} 
-                zoom={12} 
-                height={280} 
-                onClick={() => navigate('/map')} 
-              />
-            ) : (
-              <div style={{
-                height: 280, background: 'linear-gradient(135deg, #0d1117 0%, #161b22 50%, #0d1117 100%)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: 12, cursor: 'pointer'
-              }} onClick={() => navigate('/map')}>
-                <div style={{ fontSize: 36, opacity: 0.3 }}>🗺️</div>
-                <div style={{ fontSize: 12, color: '#94a3b8' }}>
-                  <span style={{ color: '#4f46e5' }}>Open Interactive Map</span>
-                </div>
-              </div>
-            )}
-            {stations[0] && (
-              <div style={{ padding: '14px 18px', background: 'var(--color-surface-2)', borderTop: '1px solid var(--color-border)' }}>
-                <div style={{ fontSize: 10, color: '#4f46e5', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 4 }}>Closest Fuel Station</div>
-                <div style={{ fontWeight: 700, fontSize: 14, color: 'var(--color-text)' }}>{stations[0]._meta?.distanceKm} km · {stations[0].name}</div>
-              </div>
-            )}
-          </div>
+        {loading && Array.from({ length: 3 }).map((_, i) => (
+          <div key={i} style={{ height: 120, background: '#ffffff', borderRadius: 24, marginBottom: 16, border: '1px solid #eef2f6' }} />
+        ))}
 
-          {/* Legend */}
-          <div style={{ marginTop: 16, background: '#ffffff', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-lg)', padding: 16 }}>
-            <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#64748b', marginBottom: 12 }}>Availability Legend</div>
-            {[['#22c55e', 'Available'], ['#f59e0b', 'Low Stock'], ['#ef4444', 'Out of Stock'], ['#8b5cf6', 'EV Station']].map(([c, l]) => (
-              <div key={l} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
-                <div style={{ width: 10, height: 10, borderRadius: '50%', background: c }} />
-                <span style={{ fontSize: 13, color: '#64748b' }}>{l}</span>
-              </div>
-            ))}
+        {!loading && stations.map((s, i) => (
+          <StationRow key={s.id} station={s} rank={i} onRoute={handleRoute} onDetails={handleDetails} />
+        ))}
+
+        {!loading && stations.length === 0 && (
+          <div style={{ textAlign: 'center', padding: '100px 20px', background: '#fff', borderRadius: 32, border: '1px solid #eef2f6' }}>
+            <div style={{ fontSize: 48, marginBottom: 20 }}>⛽</div>
+            <h3 style={{ fontSize: 22, fontWeight: 900, marginBottom: 12 }}>No stations nearby</h3>
+            <p style={{ color: '#94a3b8', fontSize: 15, marginBottom: 32 }}>Try using the "Any Distance" filter or searching for a different area.</p>
+            <button onClick={() => { setFuelType(''); setStatus('all'); setRadius(9999); handleSearch(); }}
+              className="btn-premium" style={{ background: '#0f172a', borderRadius: '16px' }}>Reset Filters</button>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

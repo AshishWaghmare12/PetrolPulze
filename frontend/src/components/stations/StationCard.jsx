@@ -40,6 +40,10 @@ export default function StationCard({ station, onRouteClick }) {
     }
   };
 
+  const stationRating = parseFloat(station.rating || station.ratingValue || 0);
+  const isOpen = station.isOpen !== undefined ? station.isOpen : station.open_now;
+  const open24Hours = station.open24Hours !== undefined ? station.open24Hours : false;
+
   return (
     <div
       onClick={() => { setSelectedStation(station); navigate(`/station/${station.id}`); }}
@@ -57,7 +61,7 @@ export default function StationCard({ station, onRouteClick }) {
           <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 2 }}>
             <div style={{
               width: 8, height: 8, borderRadius: '50%', flexShrink: 0,
-              background: station.isOpen ? '#22c55e' : '#ef4444',
+              background: isOpen ? '#22c55e' : '#ef4444',
             }} />
             <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 13, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
               {station.name}
@@ -66,9 +70,9 @@ export default function StationCard({ station, onRouteClick }) {
           <div style={{ fontSize: 11, color: '#64748b', paddingLeft: 14 }}>{station.area}</div>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0 }}>
-          {station.isOpen
+          {isOpen
             ? <span style={{ fontSize: 9, fontWeight: 700, color: '#22c55e', background: 'rgba(34,197,94,0.12)', padding: '2px 7px', borderRadius: '999px' }}>
-                {station.open24Hours ? '24/7' : 'OPEN'}
+                {open24Hours ? '24/7' : 'OPEN'}
               </span>
             : <span style={{ fontSize: 9, fontWeight: 700, color: '#ef4444', background: 'rgba(239,68,68,0.1)', padding: '2px 7px', borderRadius: '999px' }}>CLOSED</span>
           }
@@ -80,7 +84,7 @@ export default function StationCard({ station, onRouteClick }) {
         <div style={{ display: 'flex', gap: 14, fontSize: 12, color: '#64748b', marginBottom: 8, paddingLeft: 14 }}>
           <span>📍 {meta.distanceKm} km</span>
           <span>⏱ {meta.etaMinutes} min</span>
-          <span style={{ color: '#f59e0b' }}>★ {parseFloat(station.rating).toFixed(1)}</span>
+          <span style={{ color: '#f59e0b' }}>★ {stationRating > 0 ? stationRating.toFixed(1) : 'New'}</span>
           {meta.currentQueueMinutes > 0 && <span>🚗 {meta.currentQueueMinutes}min queue</span>}
         </div>
       )}
