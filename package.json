@@ -2,7 +2,11 @@
   "name": "petrolpulze-monorepo",
   "version": "1.0.0",
   "scripts": {
-    "build": "cd frontend && npm install && npm run build -- --outDir ../public",
-    "install": "cd backend && npm install"
+    "build": "npm run install-backend && npm run build-frontend",
+    "install-backend": "cd backend && npm install",
+    "build-frontend": "cd frontend && npm install && npm run build -- --outDir ../public"
+  },
+  "dependencies": {
+    "vite": "^5.0.0"
   }
 }
