@@ -43,6 +43,9 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 // Routes
+app.get('/api/health', (req, res) => {
+  res.status(200).json({ status: 'OK', message: 'PetroPluze X API is healthy', timestamp: new Date() });
+});
 app.use('/api/pumps', pumpRoutes);
 app.use('/api/route', routeRoutes);
 
