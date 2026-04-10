@@ -470,7 +470,7 @@ export default function HomePage() {
                 Real-time Network<br />at Your Fingertips
               </h2>
               <p style={{ fontSize: 16, color: 'var(--color-text-dim)', maxWidth: 520, margin: '0 auto', lineHeight: 1.7 }}>
-                Never make fuel stops guesswork. PetroPluze is always on the
+                Never make fuel stops guesswork. PetroPulze is always on the
                 map, ready to find your optimal route.
               </p>
             </div>
@@ -643,7 +643,7 @@ export default function HomePage() {
           </Reveal>
           <Reveal delay={0.15}>
             <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 42, fontWeight: 800, color: '#fff', letterSpacing: '-0.03em', marginBottom: 28 }}>
-              Drive Smarter with PetroPluze
+              Drive Smarter with PetroPulze
             </h2>
             <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
               <Link to="/auth" className="btn btn-ghost" style={{ padding: '13px 26px', fontSize: 15, borderColor: 'rgba(255,255,255,0.2)', color: '#fff' }}>Login</Link>
