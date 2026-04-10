@@ -39,7 +39,7 @@ export default function Navbar() {
             fontWeight: 700, fontSize: 18,
             color: 'var(--color-text)', letterSpacing: '-0.02em',
           }}>
-            PetroPluze
+            PetroPulze
           </span>
         </Link>
 
