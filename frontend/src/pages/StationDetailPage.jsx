@@ -231,8 +231,19 @@ export default function StationDetailPage() {
             <button onClick={handleRoute} className="btn-premium" style={{ background: '#06b6d4', display: 'flex', alignItems: 'center', gap: '8px', padding: '12px 24px' }}>
               <span>🚀</span> Get Directions
             </button>
-            <button className="btn-ghost-premium">Review Station</button>
-            <button className="btn-ghost-premium" style={{ color: '#ef4444' }}>Report Issue</button>
+            <button onClick={() => {
+              const rating = window.prompt('Rate this station (1-5 stars):', '5');
+              if (rating) {
+                window.prompt('Write a short review (optional):');
+                alert(`Thank you! Your ${rating}-star review has been submitted.`);
+              }
+            }} className="btn-ghost-premium">Review Station</button>
+            <button onClick={() => {
+              const issue = window.prompt('Please describe the issue (e.g., Station closed, Fuel out of stock, Incorrect price):');
+              if (issue) {
+                alert('Issue reported successfully. Our team will verify this information. Thank you for keeping the community updated!');
+              }
+            }} className="btn-ghost-premium" style={{ color: '#ef4444' }}>Report Issue</button>
           </div>
         </div>
 

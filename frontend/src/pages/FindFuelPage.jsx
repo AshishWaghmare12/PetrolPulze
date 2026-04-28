@@ -178,8 +178,7 @@ export default function FindFuelPage() {
   };
 
   const handleSearch = async (overrideLoc = null) => {
-    const loc = overrideLoc || searchedLoc || userLocation;
-    if (!loc) { locateUser(); return; }
+    const loc = overrideLoc || searchedLoc || userLocation || { lat: 19.1235, lng: 72.8872 };
     setLoading(true);
     try {
       const params = {
@@ -192,7 +191,7 @@ export default function FindFuelPage() {
         setStations((res.data || []).slice(0, 5));
       }
     } catch (err) {
-      console.error(err);
+      console.error('Find Fuel fetch error:', err);
     } finally {
       setLoading(false);
     }
